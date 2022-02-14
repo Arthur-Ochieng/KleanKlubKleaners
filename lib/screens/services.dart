@@ -15,7 +15,7 @@ class _ServicesPageState extends State<ServicesPage> {
       appBar: AppBar(
         title: const Text("Klean Klub"),
       ),
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Color.fromARGB(255, 243, 243, 243),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
@@ -41,18 +41,47 @@ class _ServicesPageState extends State<ServicesPage> {
 
 
 class BoxPage extends StatelessWidget {
-  const BoxPage({ Key? key }) : super(key: key);
+  BoxPage({ Key? key }) : super(key: key);
+
+var services = [
+  "Home Cleaning Services"
+  "Office Cleaning Services"
+  "Industrial and Equipment Cleaning"
+  "Carpet Cleaning Services"
+  "Sofa Cleaning Services"
+  "Deep Cleaning Services"
+];
+
+var images = [
+  "assets/broom.png"
+  "assets/house.png"
+  "assets/offices.png"
+  "assets/vacuum.png"
+];
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      itemCount: services.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2
       ),
       itemBuilder: (BuildContext context, int index){
         return Card(
           child: Column(
-            
+            children: <Widget>[
+              const SizedBox(
+                height: 20,
+              ),
+              Image.asset("assets/KK.png", height: 50, width: 50,),
+              const Padding(
+                padding: EdgeInsets.all(20), 
+                child: Text("Carpet Cleaning Services", 
+                  textAlign: TextAlign.center,
+                  style: TextStyle( fontSize: 16, height: 1.2, fontWeight: FontWeight.bold,),
+                ),
+              )
+            ],
           ),
         );
       },
