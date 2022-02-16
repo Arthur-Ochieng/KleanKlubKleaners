@@ -12,6 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  table_calendar: ^3.0.3
   
   animated_splash_screen: ^1.2.0
   flutter_map: any
@@ -34,7 +35,7 @@ flutter:
   
   assets:
     - assets/
-    - assets/font/
+    - assets/icons/
 
 fonts:
   - family: ubuntu

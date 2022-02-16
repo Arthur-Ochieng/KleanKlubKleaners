@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/splash.dart';
+import 'package:kkservices/screens/test.dart';
 import 'package:kkservices/screens/intro.dart';
 import 'package:kkservices/screens/notifications.dart';
 import 'package:kkservices/screens/profile.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: const Splash(),
+      home: const Testing(),
     );
   }
 }
