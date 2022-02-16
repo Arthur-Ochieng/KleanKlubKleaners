@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/home_screen.dart';
+import 'package:kkservices/main.dart';
 import 'package:kkservices/screens/registration_screen.dart';
 
 
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
       minWidth: MediaQuery.of(context).size.width,
       onPressed: () {
         Navigator.push(
-         context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+         context, MaterialPageRoute(builder: (context) => const LandingPage()));
       },
       child: const Text(
         "Login",

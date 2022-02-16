@@ -16,7 +16,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    const user = UserPreferences.myUser;
+    //const user = UserPreferences.myUser;
 
     return Scaffold(
       appBar: buildAppBar(context),

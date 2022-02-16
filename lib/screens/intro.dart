@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kkservices/screens/login_screen.dart';
 import 'package:kkservices/screens/notifications.dart';
 import 'package:kkservices/screens/profile.dart';
 import 'package:kkservices/screens/services.dart';
@@ -11,47 +12,66 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentIndex = 0;
-  final screens = [
-    const MainPage(),
-    const ServicesPage(),
-    const NotificationsPage(),
-    const Profile(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: screens,
+      appBar: AppBar(
+        title: const Text("HomePage"),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 20,
-        currentIndex: currentIndex,
-        onTap: (Index) => setState(() => currentIndex = Index),
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.blueAccent,
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: 'Services',
-            backgroundColor: Colors.blueAccent,
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Notification',
-            backgroundColor: Colors.blueAccent,
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-            backgroundColor: Colors.blueAccent,
-          )
-        ],
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('UserName'),
+            ),
+            ListTile(
+              title: const Text('Notifications'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Wallet'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Profile'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Settings'),
+              onTap: () {
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => const ServicesPage()));
+              },
+            ),
+            ListTile(
+              title: const Text('Logout'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LoginScreen()
+                  )
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

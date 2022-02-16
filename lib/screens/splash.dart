@@ -29,7 +29,7 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: 100,
+              height: 150,
               width: 100,
               child: Image.asset('assets/KK.png'),
               //color: Colors.blueAccent,
