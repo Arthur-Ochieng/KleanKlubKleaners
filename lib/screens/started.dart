@@ -19,28 +19,59 @@ class _GetStartedState extends State<GetStarted> {
       body: Center(
         child: Column(
           children:[
-            SizedBox(height: 30,),
-            Text("Clean Home\nClean Life", style: TextStyle(
+            const SizedBox(height: 30,),
+            const Text("Clean Home\nClean Life", style: TextStyle(
               fontSize: 40,
               color: Colors.white,
               fontFamily: 'ubuntu',
               fontWeight: FontWeight.w900,
             ),),
-            SizedBox(height: 30,),
-            Text("Book Cleans At The Comfort \nof Your Home", style: TextStyle(
+            const SizedBox(height: 30,),
+            const Text("Book Cleans At The Comfort \nof Your Home", style: TextStyle(
               fontSize: 18,
               color: Colors.white,
               fontWeight: FontWeight.w400,
             ),),
-            SizedBox(height: 60,),
+            const SizedBox(height: 60,),
             Container(
               height: 350,
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/KK.png'),
+                  image: AssetImage('/splash.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const LoginScreen()),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(30)),
+                      color: Colors.white,
+                    ),
+                    child: const Text("Continue..", style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blueAccent,
+                    )),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
