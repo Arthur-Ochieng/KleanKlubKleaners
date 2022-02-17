@@ -1,4 +1,8 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
+import 'package:kkservices/models/services.dart';
+import 'package:kkservices/models/services.dart';
 import 'package:kkservices/screens/login_screen.dart';
 import 'package:kkservices/screens/notifications.dart';
 import 'package:kkservices/screens/profile.dart';
@@ -12,11 +16,35 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final controller = TextEditingController();
+  List<Service> Services = allServices;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("HomePage"),
+      ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            margin:  const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+            child: TextField(
+              controller: controller,
+              decoration:  InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                hintText: 'Search for a service',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(color: Colors.black),
+
+                ),
+              ),
+            ),
+            
+          ),
+        ],
+        // ignore: prefer_const_literals_to_create_immutables
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
