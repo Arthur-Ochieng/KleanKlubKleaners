@@ -38,12 +38,12 @@ class _TestingState extends State<Testing> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   const Text("Selected Cleaning", style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600
                   ),),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -117,7 +117,7 @@ class _TestingState extends State<Testing> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   const Text("Selected Frequency", style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600
@@ -191,7 +191,7 @@ class _TestingState extends State<Testing> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30,),
+                  const SizedBox(height: 20,),
                   const Text("Seleted Extras", style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600
