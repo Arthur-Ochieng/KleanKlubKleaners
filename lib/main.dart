@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: const Splash(),
+      home: const Profile(),
     );
   }
 }
