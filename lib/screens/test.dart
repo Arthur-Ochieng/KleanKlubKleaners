@@ -30,7 +30,7 @@ class _TestingState extends State<Testing> {
           Expanded(
             child: Container(
               width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
                 color: Colors.white,
@@ -57,7 +57,7 @@ class _TestingState extends State<Testing> {
                               decoration: const BoxDecoration(
                                 color: Color(0xffdfdeff),
                                 image: DecorationImage(
-                                  image: AssetImage("/img1.png"),
+                                  image: AssetImage("assets/icons/img1.png"),
                                 ),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
@@ -86,12 +86,12 @@ class _TestingState extends State<Testing> {
                         child: Column(
                           children: [
                             Container(
-                              height: 140,
+                              height: 130,
                               width: MediaQuery.of(context).size.width * 0.43,
                               decoration: const BoxDecoration(
                                 color: Color(0xffdfdeff),
                                 image: DecorationImage(
-                                  image: AssetImage("/img2.png"),
+                                  image: AssetImage("assets/icons/img2.png"),
                                 ),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
@@ -205,15 +205,7 @@ class _TestingState extends State<Testing> {
                       extraWidget("blind", "Small Blinds", false),
                     ],
                   ),
-                  // SizedBox(height: 20,),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //   children: [
-                  //     extraWidget("garden", "Patio", false),
-                  //     extraWidget("organise", "Grocery", true),
-                  //     extraWidget("blind", "Curtains", false),
-                  //   ],
-                  // ),
+
                   Expanded(
                     child: Container(),
                   ),
@@ -274,7 +266,7 @@ class _TestingState extends State<Testing> {
                 margin: const EdgeInsets.all(17),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("/icons/$img.png"),
+                    image: AssetImage("assets/icons/$img.png"),
                     fit: BoxFit.contain
                   )
                 ),

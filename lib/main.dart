@@ -1,13 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kkservices/screens/login_screen.dart';
 import 'package:kkservices/screens/splash.dart';
 import 'package:kkservices/screens/intro.dart';
 import 'package:kkservices/screens/notifications.dart';
 import 'package:kkservices/screens/profile.dart';
 import 'package:kkservices/screens/test.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -16,18 +23,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: const Profile(),
+      home: const LoginScreen(),
     );
   }
 }
 
 class LandingPage extends StatefulWidget {
-  const LandingPage({ Key? key }) : super(key: key);
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
   _LandingPageState createState() => _LandingPageState();
@@ -41,7 +49,7 @@ class _LandingPageState extends State<LandingPage> {
     const NotificationsPage(),
     const Profile(),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,9 +87,3 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 }
-
-
-
-
-
- 

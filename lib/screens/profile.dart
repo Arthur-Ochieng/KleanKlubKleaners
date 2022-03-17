@@ -5,7 +5,6 @@ import 'package:kkservices/models/user.dart';
 import 'package:kkservices/utilis/user_preferences.dart';
 
 
-
 class Profile extends StatefulWidget {
   const Profile({ Key? key }) : super(key: key);
 
@@ -167,7 +166,7 @@ class _ProfileState extends State<Profile> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(60),
               child: Image.asset(
-                "/KK.png",
+                "assets/icons/KK.png",
                 height: 120,
                 width: 120,
                 fit: BoxFit.cover,

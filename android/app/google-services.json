@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "466347337052",
+    "project_id": "cleaners-344119",
+    "storage_bucket": "cleaners-344119.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466347337052:android:5ad365f7e1a84ed630cd99",
+        "android_client_info": {
+          "package_name": "com.example.kkservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466347337052-6bd464qjuolfgois6oghr5h5t3p26b01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn6mjA43d1CinFjxvR_AsbjfFCOaT3SXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466347337052-6bd464qjuolfgois6oghr5h5t3p26b01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,3 @@
-// ignore_for_file: division_optimization
-
-import 'dart:js_util';
-
 import 'package:flutter/material.dart';
 import 'package:kkservices/models/services.dart';
 import 'package:kkservices/models/services.dart';
@@ -24,9 +20,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("HomePage"),
-      // ),
       backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.only(top: 10, left: 30, right:30),
@@ -197,7 +190,7 @@ class _MainPageState extends State<MainPage> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15),
                             image: const DecorationImage(
-                              image: AssetImage("/house.png")
+                              image: AssetImage("assets/icons/house.png")
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -235,7 +228,7 @@ class _MainPageState extends State<MainPage> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15),
                             image: const DecorationImage(
-                              image: AssetImage("/house.png")
+                              image: AssetImage("assets/icons/house.png")
                             ),
                             boxShadow: [
                               BoxShadow(

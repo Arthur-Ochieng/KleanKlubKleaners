@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kkservices/screens/home_screen.dart';
+import 'package:kkservices/screens/intro.dart';
 import 'package:kkservices/screens/login_screen.dart';
 
 class GetStarted extends StatefulWidget {
-  const GetStarted({ Key? key }) : super(key: key);
+  const GetStarted({Key? key}) : super(key: key);
 
   @override
   _GetStartedState createState() => _GetStartedState();
@@ -18,27 +21,39 @@ class _GetStartedState extends State<GetStarted> {
       // ),
       body: Center(
         child: Column(
-          children:[
-            const SizedBox(height: 30,),
-            const Text("Clean Home\nClean Life", style: TextStyle(
-              fontSize: 40,
-              color: Colors.white,
-              fontFamily: 'ubuntu',
-              fontWeight: FontWeight.w900,
-            ),),
-            const SizedBox(height: 30,),
-            const Text("Book Cleans At The Comfort \nof Your Home", style: TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-              fontWeight: FontWeight.w400,
-            ),),
-            const SizedBox(height: 60,),
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Clean Home\nClean Life",
+              style: TextStyle(
+                fontSize: 40,
+                color: Colors.white,
+                fontFamily: 'ubuntu',
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Book Cleans At The Comfort \nof Your Home",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
             Container(
               height: 350,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('/splash.png'),
+                  image: AssetImage('assets/icons/splash.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -54,21 +69,43 @@ class _GetStartedState extends State<GetStarted> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const LoginScreen()),
+                        builder: (context) => StreamBuilder<User?>(
+                            stream: FirebaseAuth.instance.authStateChanges(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                print("1");
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              } else if (snapshot.hasError) {
+                                print("2");
+                                return const Center(
+                                    child: Text("Something went wrong!"));
+                              } else if (snapshot.hasData) {
+                                print("3");
+                                return const MainPage();
+                              } else {
+                                print("4");
+                                return const LoginScreen();
+                              }
+                            }),
+                      ),
                     );
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
                     decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(30)),
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(30)),
                       color: Colors.white,
                     ),
-                    child: const Text("Continue..", style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.blueAccent,
-                    )),
+                    child: const Text("Continue..",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.blueAccent,
+                        )),
                   ),
                 ),
               ],

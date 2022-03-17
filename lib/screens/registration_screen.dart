@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kkservices/screens/login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -137,7 +138,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           "Sign Up",
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: 19, color: Colors.white, fontWeight: FontWeight.bold),
+            fontSize: 19, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -173,7 +174,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(
                       height: 180,
                       child: Image.asset(
-                        "assets/KK.png",
+                        "assets/icons/KK.png",
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -190,6 +191,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     const SizedBox(height: 20),
                     signUpButton,
                     const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text("Already have an account?"),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                const LoginScreen()
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            "SignIn",
+                            style: TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
