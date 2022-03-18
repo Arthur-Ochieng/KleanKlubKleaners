@@ -69,26 +69,7 @@ class _GetStartedState extends State<GetStarted> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => StreamBuilder<User?>(
-                            stream: FirebaseAuth.instance.authStateChanges(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                print("1");
-                                return const Center(
-                                    child: CircularProgressIndicator());
-                              } else if (snapshot.hasError) {
-                                print("2");
-                                return const Center(
-                                    child: Text("Something went wrong!"));
-                              } else if (snapshot.hasData) {
-                                print("3");
-                                return const MainPage();
-                              } else {
-                                print("4");
-                                return const LoginScreen();
-                              }
-                            }),
+                        builder: (context) => LoginScreen(),
                       ),
                     );
                   },

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/screens/login_screen.dart';
 import 'package:kkservices/screens/splash.dart';
 import 'package:kkservices/screens/intro.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      home: const Cleaners(),
     );
   }
 }

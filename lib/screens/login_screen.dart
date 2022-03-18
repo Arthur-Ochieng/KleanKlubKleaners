@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kkservices/main.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:kkservices/screens/home_page.dart';
+import 'package:kkservices/screens/intro.dart';
 import 'package:kkservices/screens/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,6 +19,9 @@ class _LoginScreenState extends State<LoginScreen> {
   //editing controller
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  //firebase
+  final _auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
@@ -96,7 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: signIn,
+        onPressed: () {
+          signIn(emailController.text, passwordController.text);
+        },
         // () {
         //   Navigator.push(
         //   context, MaterialPageRoute(builder: (context) => const LandingPage()));
@@ -146,8 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                  const RegistrationScreen()
+                                    builder: (context) => const RegistrationScreen()
                                 ),
                               );
                             },
@@ -171,20 +177,18 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
-  Future signIn() async {
-    // showDialog(
-    //   context: context,
-    //   barrierDismissible: false,
-    //   builder: (context) => const Center(child: CircularProgressIndicator(),)
-    // );
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-    } on FirebaseAuthException catch (e) {
-      print(e);
+  void signIn(String email, String password) async {
+    if (_formkey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Login was successful"),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const HomePage())),
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
     }
-    //navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
