@@ -32,7 +32,7 @@ class _ServicesPageState extends State<ServicesPage> {
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+                //borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
                 color: Colors.white,
               ),
               child: Column(
@@ -118,7 +118,7 @@ class _ServicesPageState extends State<ServicesPage> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  const Text("Selected Frequency", style: TextStyle(
+                  const Text("Select Service", style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600
                   ),),
@@ -127,11 +127,11 @@ class _ServicesPageState extends State<ServicesPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: (){changeFrequency("weekly");},
+                        onTap: (){changeFrequency("laundry");},
                         child: Container(
                           height: 50,
                           width: 110,
-                          decoration: (selectedFrequency == "weekly") ? const BoxDecoration(
+                          decoration: (selectedFrequency == "laundry") ? const BoxDecoration(
                             color: Colors.blueAccent,
                             borderRadius: BorderRadius.all(Radius.circular(10))
                           ) : BoxDecoration(
@@ -139,20 +139,20 @@ class _ServicesPageState extends State<ServicesPage> {
                             borderRadius: const BorderRadius.all(Radius.circular(10))
                           ),
                           child: Center(
-                            child: Text("Weekly", style: TextStyle(
+                            child: Text("Laundry", style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
-                              color: (selectedFrequency == "weekly") ? Colors.white : Colors.black
+                              color: (selectedFrequency == "laundry") ? Colors.white : Colors.black
                             ),),
                           ),
                         ),
                       ),
                       InkWell(
-                        onTap: (){changeFrequency("biweekly");},
+                        onTap: (){changeFrequency("dusting");},
                         child: Container(
                           height: 50,
                           width: 110,
-                          decoration: (selectedFrequency == "biweekly") ? const BoxDecoration(
+                          decoration: (selectedFrequency == "dusting") ? const BoxDecoration(
                             color: Colors.blueAccent,
                             borderRadius: BorderRadius.all(Radius.circular(10))
                           ) : BoxDecoration(
@@ -160,20 +160,20 @@ class _ServicesPageState extends State<ServicesPage> {
                             borderRadius: const BorderRadius.all(Radius.circular(10))
                           ),
                           child: Center(
-                            child: Text("Bi-Weekly", style: TextStyle(
+                            child: Text("Dusting", style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
-                              color: (selectedFrequency == "biweekly") ? Colors.white : Colors.black
+                              color: (selectedFrequency == "dusting") ? Colors.white : Colors.black
                             ),),
                           ),
                         ),
                       ),
                       InkWell(
-                        onTap: (){changeFrequency("monthly");},
+                        onTap: (){changeFrequency("cleaning");},
                         child: Container(
                           height: 50,
                           width: 90,
-                          decoration: (selectedFrequency == "monthly") ? const BoxDecoration(
+                          decoration: (selectedFrequency == "cleaning") ? const BoxDecoration(
                             color: Colors.blueAccent,
                             borderRadius: BorderRadius.all(Radius.circular(10))
                           ) : BoxDecoration(
@@ -181,10 +181,10 @@ class _ServicesPageState extends State<ServicesPage> {
                             borderRadius: const BorderRadius.all(Radius.circular(10))
                           ),
                           child: Center(
-                            child: Text("Monthly", style: TextStyle(
+                            child: Text("Cleaning", style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
-                              color: (selectedFrequency == "monthly") ? Colors.white : Colors.black
+                              color: (selectedFrequency == "cleaning") ? Colors.white : Colors.black
                             ),),
                           ),
                         ),
@@ -302,6 +302,6 @@ class _ServicesPageState extends State<ServicesPage> {
   void openCalendarPage()
   {
     Navigator.push(
-      context, MaterialPageRoute(builder: (context) => const CalendarPage()));
+      context, MaterialPageRoute(builder: (context) => DatePicker()));
   }
 }

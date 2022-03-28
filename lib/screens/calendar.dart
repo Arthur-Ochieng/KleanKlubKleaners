@@ -1,46 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
+import 'package:kkservices/widgets/ButtonHeaderWidget.dart';
 
-
-class CalendarPage extends StatelessWidget {
-  const CalendarPage({ Key? key }) : super(key: key);
-
+class DatePicker extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const calendarPage(),
-      theme: ThemeData(
-        fontFamily: 'ubuntu'
-      ),
-    );
-  }
+  State<DatePicker> createState() => _DatePickerState();
 }
 
-class calendarPage extends StatefulWidget {
-  const calendarPage({ Key? key }) : super(key: key);
+class _DatePickerState extends State<DatePicker> {
+  DateTime ? date;
 
-  @override
-  _calendarPageState createState() => _calendarPageState();
-}
-
-class _calendarPageState extends State<calendarPage> {
-  //CalendarController _calendarController = CalendarController();
-  @override
-  void initState(){
-    //TODO: Implement InitState
-    super.initState();
-  //  _calendarController = CalendarController();
+  String getText() {
+    if (date == null) {
+      return 'Select Date';
+    } else {
+      return DateFormat('MM/dd/yyyy').format(date!);
+      //return '${date.month}/${date.day}/${date.year}';
+    }
   }
-  void dispose(){
-    //TODO: Implement Dispose
-  //  _calendarController.dispose();
-    super.dispose();
+  @override
+  Widget build(BuildContext context) => ButtonHeaderWidget(
+        title: 'Date',
+        text: getText(),
+        onClicked: () => pickDate(context),
+      );
 
-  }
-  Widget build(BuildContext context) {
-    return Scaffold(
-      
+  Future pickDate(BuildContext context) async {
+    final initialDate = DateTime.now();
+    final newDate = await showDatePicker(
+      context: context,
+      initialDate: date ?? initialDate,
+      firstDate: DateTime(DateTime.now().year - 5),
+      lastDate: DateTime(DateTime.now().year + 5),
     );
+
+    if (newDate == null) return;
+
+    setState(() => date = newDate);
   }
 }

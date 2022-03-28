@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kkservices/screens/fragments/booking.dart';
+import 'package:kkservices/screens/fragments/cleaners.dart';
+import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/screens/fragments/history.dart';
 import 'package:kkservices/screens/fragments/notifications.dart';
 import 'package:kkservices/screens/fragments/profile.dart';
@@ -22,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     BookingPage(),
     ServicesPage(),
     NotificationsPage(),
-    HistoryPage(),
+    Cleaners(),
     ProfilePage(),
   ];
 
@@ -41,7 +43,7 @@ class _HomePageState extends State<HomePage> {
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
