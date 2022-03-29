@@ -302,6 +302,6 @@ class _ServicesPageState extends State<ServicesPage> {
   void openCalendarPage()
   {
     Navigator.push(
-      context, MaterialPageRoute(builder: (context) => DatePicker()));
+      context, MaterialPageRoute(builder: (context) => PickerWidget()));
   }
 }

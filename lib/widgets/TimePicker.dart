@@ -18,8 +18,6 @@ class _TimePickerState extends State<TimePicker> {
       final hours = time?.hour.toString().padLeft(2, '0');
       final minutes = time?.minute.toString().padLeft(2, '0');
       return '$hours:$minutes';
-
-      //return '${time.hour}:${time.minute}';
     }
   }
 

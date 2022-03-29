@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:kkservices/screens/calendar.dart';
 import 'package:kkservices/screens/fragments/maps.dart';
 import 'package:kkservices/screens/fragments/marker.dart';
 import 'package:kkservices/screens/home_page.dart';
+import 'package:kkservices/widgets/TimePicker.dart';
 import 'package:kkservices/widgets/date_time_picker.dart';
 
 void main() async {
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: MarkerPage(),
+      home: TimePicker(),
     );
   }
 }
