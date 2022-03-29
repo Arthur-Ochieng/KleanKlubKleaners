@@ -28,6 +28,7 @@ dependencies:
 
   #format date and time
   intl: ^0.17.0
+  google_maps_flutter: ^2.1.3
 
 dev_dependencies:
   flutter_test:
