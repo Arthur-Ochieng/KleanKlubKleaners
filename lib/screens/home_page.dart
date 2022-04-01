@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kkservices/screens/fragments/booking.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/screens/fragments/history.dart';
+import 'package:kkservices/screens/fragments/marker.dart';
 import 'package:kkservices/screens/fragments/notifications.dart';
 import 'package:kkservices/screens/fragments/profile.dart';
 import 'package:kkservices/screens/fragments/services.dart';
@@ -22,8 +24,10 @@ class _HomePageState extends State<HomePage> {
   int indexPage = 0;
   final List fragments = const [
     BookingPage(),
-    ServicesPage(),
-    NotificationsPage(),
+    ServicesPage(
+      data: {},
+    ),
+    MarkerPage(),
     Cleaners(),
     ProfilePage(),
   ];
@@ -55,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: _toggleDropdown, 
+            onPressed: _toggleDropdown,
             icon: const Icon(
               Icons.notifications,
             ),

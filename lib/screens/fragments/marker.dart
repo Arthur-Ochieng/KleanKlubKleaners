@@ -12,7 +12,7 @@ class MarkerPage extends StatefulWidget {
 
 class _MarkerState extends State<MarkerPage> {
   GoogleMapController? controller;
-  LatLng? _markerPos;
+  LatLng _markerPos = LatLng(-1.286389, 36.817223);
 
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   MarkerId? selectedMarker;
@@ -23,7 +23,7 @@ class _MarkerState extends State<MarkerPage> {
     this.controller = controller;
   }
 
-// , 
+// ,
   CameraPosition kGooglePlex = const CameraPosition(
     target: LatLng(-1.286389, 36.817223),
     zoom: 14.4746,
@@ -68,7 +68,7 @@ class _MarkerState extends State<MarkerPage> {
                   pos.longitude,
                 ),
               );
-              print(pos);
+              //print(pos);
               setState(() {
                 _markerPos = pos;
                 markers[markerId] = marker;
@@ -168,12 +168,13 @@ class _MarkerState extends State<MarkerPage> {
                 ),
                 ElevatedButton(
                     onPressed: () {
+                      Map<String, dynamic> data = {"lat": _markerPos.latitude, "lng": _markerPos.longitude};
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const ServicesPage()
-                        )
-                      );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ServicesPage(data: data),
+                          ));
+                      print(_markerPos);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff3C2593),

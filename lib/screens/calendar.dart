@@ -57,7 +57,7 @@ class _PickerWidgetState extends State<PickerWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              DatePicker(),
+             // DatePicker(),
               SizedBox(height: 24,),
               TimePicker(),
               SizedBox(height: 24,),              

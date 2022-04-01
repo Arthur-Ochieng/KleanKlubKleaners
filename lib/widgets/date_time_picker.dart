@@ -11,6 +11,8 @@ class DateTimePicker extends StatefulWidget {
 
 class _DateTimePickerState extends State<DateTimePicker> {
   DateTime? dateTime;
+  TimeOfDay? time;
+  DateTime? date;
 
   String getText() {
     if (dateTime == null) {
@@ -26,6 +28,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
         text: getText(),
         onClicked: () => pickDateTime(context),
       );
+
   Future pickDateTime(BuildContext context) async {
     final date = await pickDate(context);
     if (date == null) return;
@@ -44,27 +47,51 @@ class _DateTimePickerState extends State<DateTimePicker> {
     });
   }
 
+  // Future pickDate(BuildContext context) async {
+  //   final initialDate = DateTime.now();
+  //   final newDate = await showDatePicker(
+  //     context: context,
+  //     initialDate: dateTime ?? initialDate,
+  //     firstDate: DateTime(DateTime.now().year - 5),
+  //     lastDate: DateTime(DateTime.now().year + 5),
+  //   );
+
+  //   if (newDate == null) return null;
+  // }
+
+  // Future pickTime(BuildContext context) async {
+  //   final initalTime = TimeOfDay(hour: 9, minute: 0);
+  //   final newTime = await showTimePicker(
+  //     context: context,
+  //     initialTime: dateTime != null
+  //         ? TimeOfDay(hour: dateTime!.hour, minute: dateTime!.minute)
+  //         : initalTime,
+  //   );
+  //   if (newTime == null) return null;
+  //   return newTime;
+  // }
+
   Future pickDate(BuildContext context) async {
     final initialDate = DateTime.now();
     final newDate = await showDatePicker(
       context: context,
-      initialDate: dateTime ?? initialDate,
+      initialDate: date ?? initialDate,
       firstDate: DateTime(DateTime.now().year - 5),
       lastDate: DateTime(DateTime.now().year + 5),
     );
 
-    if (newDate == null) return null;
+    if (newDate == null) return;
+    setState(() => date = newDate);
   }
 
   Future pickTime(BuildContext context) async {
-    final initalTime = TimeOfDay(hour: 9, minute: 0);
+    final initialTime = TimeOfDay(hour: 9, minute: 0);
     final newTime = await showTimePicker(
       context: context,
-      initialTime: dateTime != null
-          ? TimeOfDay(hour: dateTime!.hour, minute: dateTime!.minute)
-          : initalTime,
+      initialTime: time ?? initialTime,
     );
-    if (newTime == null) return null;
-    return newTime;
+    if (newTime == null) return;
+
+    setState(() => time = newTime);
   }
 }

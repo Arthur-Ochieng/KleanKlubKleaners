@@ -4,6 +4,9 @@ import 'package:kkservices/screens/calendar.dart';
 import 'package:kkservices/screens/fragments/maps.dart';
 import 'package:kkservices/screens/fragments/marker.dart';
 import 'package:kkservices/screens/home_page.dart';
+import 'package:kkservices/screens/login_screen.dart';
+import 'package:kkservices/tests/test1.dart';
+import 'package:kkservices/widgets/DatePicker.dart';
 import 'package:kkservices/widgets/TimePicker.dart';
 import 'package:kkservices/widgets/date_time_picker.dart';
 
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: TimePicker(),
+      home: DateTimePicker(),
     );
   }
 }

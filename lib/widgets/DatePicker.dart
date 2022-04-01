@@ -1,14 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kkservices/widgets/ButtonHeaderWidget.dart';
 
 class DatePicker extends StatefulWidget {
+  final Map<String, dynamic> data;
+  const DatePicker({Key? key, required this.data}) : super(key: key);
   @override
   State<DatePicker> createState() => _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
-  DateTime ? date;
+  Map<String, dynamic> data = {};
+  DateTime? date;
 
   String getText() {
     if (date == null) {
@@ -17,6 +21,7 @@ class _DatePickerState extends State<DatePicker> {
       return DateFormat('MM/dd/yyyy').format(date!);
     }
   }
+
   @override
   Widget build(BuildContext context) => ButtonHeaderWidget(
         title: 'Date',
@@ -34,6 +39,17 @@ class _DatePickerState extends State<DatePicker> {
     );
 
     if (newDate == null) return;
-    setState(() => date = newDate);
+    setState(() {
+      date = newDate;
+      data['date'] = newDate;
+    });
+
+    ElevatedButton(
+      onPressed: () {
+        Map<String, dynamic> book = data;
+        FirebaseFirestore.instance.collection("booking").add(book);
+      },
+      child: Text('Book Now'),
+    );
   }
 }
