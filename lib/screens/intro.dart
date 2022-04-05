@@ -3,8 +3,8 @@ import 'package:kkservices/models/services.dart';
 import 'package:kkservices/models/services.dart';
 import 'package:kkservices/screens/login_screen.dart';
 import 'package:kkservices/screens/notifications.dart';
-import 'package:kkservices/screens/profile.dart';
-import 'package:kkservices/screens/services.dart';
+import 'package:kkservices/screens/feedback.dart';
+
 
 class MainPage extends StatefulWidget {
   const MainPage({ Key? key }) : super(key: key);

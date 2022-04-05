@@ -15,6 +15,7 @@ class _ServicesPageState extends State<ServicesPage> {
   String selectedFrequency = "monthly";
 
   Map<String, dynamic> data = {};
+  DateTime date = DateTime(2022, 12, 24);
 
   @override
   Widget build(BuildContext context) {
@@ -255,12 +256,39 @@ class _ServicesPageState extends State<ServicesPage> {
                     height: 20,
                   ),
                   const Text(
-                    "Seleted Extras",
+                    "Select Date",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${date.year}/ ${date.month}/ ${date.day}',
+                        style: const TextStyle(fontSize: 22),
+                      ),
+                      const SizedBox(width: 26),
+                      ElevatedButton(
+                        onPressed: () async {
+                          DateTime? newDate = await showDatePicker(
+                            context: context,
+                            initialDate: date,
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime(2100),
+                          );
+                          //if 'cancel' => null
+                          if (newDate == null) return;
+
+                          // if 'OK' => DateTime
+                          setState(() => date = newDate);
+                        },
+                        child: const Text('Select Date'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
