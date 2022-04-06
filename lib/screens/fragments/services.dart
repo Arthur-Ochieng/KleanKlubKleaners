@@ -17,20 +17,14 @@ class _ServicesPageState extends State<ServicesPage> {
   String selectedFrequency = "monthly";
 
   Map<String, dynamic> data = {};
-  DateTime date = DateTime(2022, 12, 24);
+  DateTime dateTime = DateTime(2022, 12, 24, 5, 30);
 
   @override
   Widget build(BuildContext context) {
+    final hours = dateTime.hour.toString().padLeft(2, '0');
+    final minutes = dateTime.minute.toString().padLeft(2, '0');
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      // appBar: AppBar(
-      //   title: const Text("Your Plan", style: TextStyle(
-      //     color: Colors.white,
-      //     fontWeight: FontWeight.w700,
-      //   ),),
-      //   elevation: 0,
-      //   backgroundColor: Colors.transparent,
-      // ),
       body: Column(
         children: [
           Expanded(
@@ -258,40 +252,30 @@ class _ServicesPageState extends State<ServicesPage> {
                     height: 20,
                   ),
                   const Text(
-                    "Select Date",
+                    "Select Date and Time",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        '${date.year}/ ${date.month}/ ${date.day}',
-                        style: const TextStyle(fontSize: 22),
+                      const SizedBox(
+                        height: 16,
                       ),
-                      const SizedBox(width: 26),
-                      ElevatedButton(
-                        onPressed: () async {
-                          DateTime? newDate = await showDatePicker(
-                            context: context,
-                            initialDate: date,
-                            firstDate: DateTime(1900),
-                            lastDate: DateTime(2100),
-                          );
-                          //if 'cancel' => null
-                          if (newDate == null) return;
-
-                          // if 'OK' => DateTime
-                          setState(() => date = newDate);
-                          data['date'] = newDate;
-                        },
-                        child: const Text('Select Date'),
+                      Expanded(
+                        child: ElevatedButton(
+                          child: Text(
+                              '${dateTime.year}/${dateTime.month}/${dateTime.day} $hours:$minutes'),
+                          onPressed: pickDateTime,
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -400,7 +384,36 @@ class _ServicesPageState extends State<ServicesPage> {
 
   void openCalendarPage() {
     FirebaseFirestore.instance.collection("booking").add(data);
+    print(data);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => SummaryPage()));
   }
+
+  Future pickDateTime() async {
+    DateTime? date = await pickDate();
+    if (date == null) return; // pressed "Cancel"
+
+    TimeOfDay? time = await pickTime();
+    if (time == null) return; //pressed "Cancel"
+
+    final dateTime = DateTime(
+      date.year,
+      date.month,
+      date.day,
+      time.hour,
+      time.minute,
+    );
+    setState(() => this.dateTime = dateTime);
+  }
+
+  Future<DateTime?> pickDate() => showDatePicker(
+        context: context,
+        initialDate: dateTime,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2100),
+      );
+
+  Future<TimeOfDay?> pickTime() => showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute));
 }
