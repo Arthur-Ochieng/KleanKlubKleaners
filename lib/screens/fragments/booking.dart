@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kkservices/screens/fragments/marker.dart';
 import 'package:kkservices/widgets/category_card.dart';
 import 'package:kkservices/widgets/constants.dart';
 
@@ -44,9 +45,10 @@ class _BookingPageState extends State<BookingPage> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 color: Colors.grey[200],
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: const TextField(
-                  decoration:  InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Search for a service',
                     border: InputBorder.none,
                     icon: Icon(Icons.search),
@@ -58,21 +60,28 @@ class _BookingPageState extends State<BookingPage> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Text(
+                children: <Widget>[
+                  const Text(
                     'Categories',
-                    style: TextStyle(
+                    style:  TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
                   ),
-                  Text(
-                    'Book Now',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Color(0xff6E8AFA),
+                  GestureDetector(
+                    child: const Text(
+                      'Book Now',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color(0xff6E8AFA),
+                      ),
                     ),
+                    onTap: () {
+                      Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => const MarkerPage())
+                      );
+                    },
                   ),
                 ],
               ),
@@ -84,8 +93,7 @@ class _BookingPageState extends State<BookingPage> {
                 runSpacing: 20,
                 children: categoryData.map((category) {
                   return CategoryCard(category['title'],
-                    category['courseAmount'], category['imageUrl']
-                  );
+                      category['courseAmount'], category['imageUrl']);
                 }).toList(),
               ),
             ],

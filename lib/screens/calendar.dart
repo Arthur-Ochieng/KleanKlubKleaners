@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kkservices/widgets/DatePicker.dart';
 import 'package:kkservices/widgets/TimePicker.dart';
 import 'package:kkservices/widgets/date_time_picker.dart';
 
@@ -20,14 +19,14 @@ class _PickerWidgetState extends State<PickerWidget> {
       );
 
   Widget buildBottomBar() {
-    final style = TextStyle(color: Colors.white);
+    const style = TextStyle(color: Colors.white);
 
     return BottomNavigationBar(
       backgroundColor: Theme.of(context).primaryColor,
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.white70,
       currentIndex: index,
-      items: [
+      items: const [
         BottomNavigationBarItem(
           icon: Text(
             'DatePicker',
@@ -53,10 +52,10 @@ class _PickerWidgetState extends State<PickerWidget> {
       return Scaffold(
         backgroundColor: Colors.lightBlue,
         body: Padding(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children:const [
              // DatePicker(),
               SizedBox(height: 24,),
               TimePicker(),
@@ -69,10 +68,10 @@ class _PickerWidgetState extends State<PickerWidget> {
       return Scaffold(
         backgroundColor: Colors.lightBlue,
         body: Padding(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               DateTimePicker(),
             ],
           ),

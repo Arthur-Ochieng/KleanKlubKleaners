@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kkservices/screens/calendar.dart';
+import 'package:kkservices/screens/fragments/summary.dart';
 import 'package:kkservices/widgets/DatePicker.dart';
 
 class ServicesPage extends StatefulWidget {
@@ -283,6 +285,7 @@ class _ServicesPageState extends State<ServicesPage> {
 
                           // if 'OK' => DateTime
                           setState(() => date = newDate);
+                          data['date'] = newDate;
                         },
                         child: const Text('Select Date'),
                       ),
@@ -396,7 +399,8 @@ class _ServicesPageState extends State<ServicesPage> {
   }
 
   void openCalendarPage() {
+    FirebaseFirestore.instance.collection("booking").add(data);
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => DatePicker(data: data)));
+        context, MaterialPageRoute(builder: (context) => SummaryPage()));
   }
 }

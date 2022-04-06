@@ -15,7 +15,7 @@ class FeedBackPage extends StatelessWidget {
           child: const Text('open form'),
           onPressed: () {
             showDialog(
-              context: context, builder: (context) => const FeedBackDialog());
+                context: context, builder: (context) => const FeedBackDialog());
           },
         ),
       ),
@@ -35,7 +35,7 @@ class _FeedBackDialogState extends State<FeedBackDialog> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
-  void diposee() {
+  void dispose() {
     _controller.dispose();
     super.dispose();
   }
@@ -68,7 +68,24 @@ class _FeedBackDialogState extends State<FeedBackDialog> {
             child: const Text('Cancel')),
         TextButton(
             onPressed: () async {
-              //code to send the necessary data to cloud firestore
+              if (_formKey.currentState!.validate()) {
+                String message;
+
+                try {
+                  final collection =
+                      FirebaseFirestore.instance.collection('feedback');
+                  await collection.doc().set({
+                    'timestamp': FieldValue.serverTimestamp(),
+                    'feedback': _controller.text,
+                  });
+                  message = "Feedback sent successfully";
+                } catch (_) {
+                  message = 'Error when sending feedback';
+                }
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(message)));
+                Navigator.pop(context);
+              }
             },
             child: const Text('Send')),
       ],
