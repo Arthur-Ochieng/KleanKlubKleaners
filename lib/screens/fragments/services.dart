@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kkservices/screens/calendar.dart';
 import 'package:kkservices/screens/fragments/summary.dart';
+import 'package:kkservices/tests/test2.dart';
 import 'package:kkservices/widgets/DatePicker.dart';
 
 class ServicesPage extends StatefulWidget {
@@ -17,6 +18,12 @@ class _ServicesPageState extends State<ServicesPage> {
   String selectedFrequency = "monthly";
 
   Map<String, dynamic> data = {};
+  @override
+  void initState() {
+    super.initState();
+    data = widget.data;
+  }
+
   DateTime dateTime = DateTime(2022, 12, 24, 5, 30);
 
   @override
@@ -326,6 +333,7 @@ class _ServicesPageState extends State<ServicesPage> {
 
   void changeFrequency(String frequency) {
     selectedFrequency = frequency;
+    print(data);
     setState(() {
       data['service'] = frequency;
       //print(frequency);
@@ -384,9 +392,8 @@ class _ServicesPageState extends State<ServicesPage> {
 
   void openCalendarPage() {
     FirebaseFirestore.instance.collection("booking").add(data);
-    print(data);
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SummaryPage()));
+        context, MaterialPageRoute(builder: (context) => AddData()));
   }
 
   Future pickDateTime() async {
@@ -403,13 +410,18 @@ class _ServicesPageState extends State<ServicesPage> {
       time.hour,
       time.minute,
     );
-    setState(() => this.dateTime = dateTime);
+    setState(() {
+      this.dateTime = dateTime;
+      data['date'] =
+          date.year.toString() + '/' + date.month.toString() + '/' + date.day.toString();
+      data['time'] = time.hour.toString() + ':' + time.minute.toString();
+    });
   }
 
   Future<DateTime?> pickDate() => showDatePicker(
         context: context,
         initialDate: dateTime,
-        firstDate: DateTime(1900),
+        firstDate: DateTime(2022),
         lastDate: DateTime(2100),
       );
 

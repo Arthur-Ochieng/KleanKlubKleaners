@@ -29,15 +29,15 @@ class Booking {
     'cleaner_name': cleaner_name,
   };
 
-  factory Booking.fromJson(Map<String, dynamic> json) {
+  factory Booking.fromFirebaseMap(Map<String, Object?> data) {
     return Booking(
-        id: json['id'],
-        address_lat: json['address_lat'],
-        address_lng: json['address_lng'],
-        client_name: json['client_name'],
-        service: json['service'],
-        date: (json['date'] as Timestamp).toDate(),
-        cleaner_name: json['cleaner_name']
+        id: data['id']as String,
+        address_lat: data['address_lat'],
+        address_lng: data['address_lng'],
+        client_name: data['client_name'],
+        service: data['service'],
+        date: (data['date'] as Timestamp).toDate(),
+        cleaner_name: data['cleaner_name']
     );
   }
 }

@@ -68,7 +68,7 @@ class _MarkerState extends State<MarkerPage> {
                   pos.longitude,
                 ),
               );
-              //print(pos);
+          
               setState(() {
                 _markerPos = pos;
                 markers[markerId] = marker;
@@ -174,7 +174,7 @@ class _MarkerState extends State<MarkerPage> {
                           MaterialPageRoute(
                             builder: (context) => ServicesPage(data: data),
                           ));
-                      print(_markerPos);
+                      //print(_markerPos);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff3C2593),

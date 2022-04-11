@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kkservices/models/user_model.dart';
 import 'package:kkservices/widgets/app_text_normal.dart';
 import 'package:kkservices/widgets/constants.dart';
 
@@ -20,23 +19,6 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  //firebase
-  // User? user = FirebaseAuth.instance.currentUser;
-  // UserModel loggedInUser = UserModel();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   FirebaseFirestore.instance
-  //     .collection("users")
-  //     .doc(user!.uid)
-  //     .get()
-  //     .then((value) => {
-  //       loggedInUser = UserModel.fromMap(value.data());
-  //       setState((){});
-  //     });
-  // }
-
   //initial index
   int initialIndex = 0;
 
@@ -63,6 +45,22 @@ class _MyDrawerState extends State<MyDrawer> {
     Icons.person,
   ];
 
+  //Variable
+  // String displayName = "";
+
+  // FirebaseFirestore firestore = FirebaseFirestore.instance;
+  // FirebaseAuth auth = FirebaseAuth.instance;
+  // User user = FirebaseAuth.instance.currentUser!;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   //displayName = user.displayName!;
+  //   if (user != null) {
+  //     displayName = user.displayName!;
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -86,8 +84,8 @@ class _MyDrawerState extends State<MyDrawer> {
               const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: AppTextNormal(
+                  //text: displayName,
                   text: ("Name"),
-                  //text: "{$loggedInUser.firstname} ${$loggedInUser.secondName}",
                   color: Colors.black54,
                   size: 25,
                 ),
@@ -177,4 +175,13 @@ class _MyDrawerState extends State<MyDrawer> {
       ),
     );
   }
+
+  // Future<DocumentReference> getUserDoc() async {
+  //   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //   final Firestore _firestore = Firestore.instance;
+
+  //   FirebaseUser user = await _auth.currentUser();
+  //   DocumentReference ref = _firestore.collection("users").document(user.uid);
+  //   return ref;
+  // }
 }
