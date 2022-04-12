@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kkservices/screens/fragments/e_profile.dart';
 import 'package:kkservices/widgets/constants.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -53,7 +54,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       style: ElevatedButton.styleFrom(
                         primary: const Color(0xff172B4D),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditProfilePage(),
+                          ));
+                      },
                       child: Container(
                         width: 50,
                         child: const Center(

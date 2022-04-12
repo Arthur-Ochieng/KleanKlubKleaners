@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kkservices/screens/feedback.dart';
 import 'package:kkservices/screens/fragments/booking.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       data: {},
     ),
     MarkerPage(),
-    Cleaners(),
+    FeedBackPage(),
     ProfilePage(),
   ];
 

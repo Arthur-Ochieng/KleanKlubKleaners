@@ -34,7 +34,7 @@ class _MyDrawerState extends State<MyDrawer> {
     "Booking",
     "Services",
     "Notifications",
-    "History",
+    "FeedBack",
     "Profile",
   ];
   final List<IconData> icons = [
