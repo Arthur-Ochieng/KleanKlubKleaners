@@ -11,21 +11,21 @@ Color buttonColor = const Color.fromARGB(255, 96, 114, 212);
 const categoryData = [
   {
     'title': 'Laundry',
-    'courseAmount': 17,
+    'courseAmount': 23,
     'imageUrl': 'assets/images/cat1.png'
   },
   {
-    'title': 'Laundry',
-    'courseAmount': 17,
+    'title': 'Cleaning',
+    'courseAmount': 15,
     'imageUrl': 'assets/images/cat2.png'
   },
   {
-    'title': 'Laundry',
-    'courseAmount': 17,
+    'title': 'Dusting',
+    'courseAmount': 16,
     'imageUrl': 'assets/images/cat3.png'
   },
   {
-    'title': 'Laundry',
+    'title': 'Vaccum',
     'courseAmount': 17,
     'imageUrl': 'assets/images/cat4.png'
   },

@@ -28,4 +28,11 @@ class UserModel {
       'type': type,
     };
   }
+
+  UserModel.fromSnapshot(snapshot)
+      : uid = snapshot.data()['uid'],
+        email = snapshot.data()['email'],
+        firstName = snapshot.data()['firstName'],
+        secondName = snapshot.data()['secondName'],
+        type = snapshot.data()['type'];
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kkservices/models/auth.dart';
 import 'package:kkservices/widgets/app_text_normal.dart';
 import 'package:kkservices/widgets/constants.dart';
 
@@ -33,8 +34,8 @@ class _MyDrawerState extends State<MyDrawer> {
   List<String> menus = [
     "Booking",
     "Payment",
-    "Notifications",
     "FeedBack",
+    "Settings",
     "Profile",
   ];
   final List<IconData> icons = [
@@ -81,11 +82,12 @@ class _MyDrawerState extends State<MyDrawer> {
                   fit: BoxFit.cover,
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: AppTextNormal(
+                  text: ("${AuthService().currentUser?.displayName}"),
                   //text: displayName,
-                  text: ("Name"),
+                  //text: ("Name"),
                   color: Colors.black54,
                   size: 25,
                 ),

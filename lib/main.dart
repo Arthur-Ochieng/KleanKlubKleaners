@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LoginScreen(),
     );
   }
 }

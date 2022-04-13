@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kkservices/models/auth.dart';
 import 'package:kkservices/screens/fragments/marker.dart';
 import 'package:kkservices/widgets/category_card.dart';
 import 'package:kkservices/widgets/constants.dart';
@@ -23,9 +24,9 @@ class _BookingPageState extends State<BookingPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
-                "Hey Arthur",
-                style: TextStyle(
+               Text(
+                "${AuthService().currentUser?.displayName}",
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
                 ),

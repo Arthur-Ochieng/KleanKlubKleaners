@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kkservices/screens/calendar.dart';
+import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/tests/test2.dart';
 import 'package:kkservices/widgets/DatePicker.dart';
 
@@ -45,7 +46,7 @@ class _ServicesPageState extends State<ServicesPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   const Text(
                     "Selected Cleaning",
@@ -255,7 +256,7 @@ class _ServicesPageState extends State<ServicesPage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
                   const Text(
                     "Select Date and Time",
@@ -280,7 +281,7 @@ class _ServicesPageState extends State<ServicesPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -392,7 +393,7 @@ class _ServicesPageState extends State<ServicesPage> {
   void openCalendarPage() {
     FirebaseFirestore.instance.collection("booking").add(data);
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddData()));
+        context, MaterialPageRoute(builder: (context) => Cleaners()));
   }
 
   Future pickDateTime() async {

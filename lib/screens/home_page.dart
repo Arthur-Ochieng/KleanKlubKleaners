@@ -4,12 +4,14 @@ import 'package:kkservices/screens/feedback.dart';
 import 'package:kkservices/screens/fragments/booking.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
+import 'package:kkservices/screens/fragments/details.dart';
 import 'package:kkservices/screens/fragments/history.dart';
 import 'package:kkservices/screens/fragments/marker.dart';
 import 'package:kkservices/screens/fragments/notifications.dart';
 import 'package:kkservices/screens/fragments/profile.dart';
 import 'package:kkservices/screens/fragments/services.dart';
 import 'package:kkservices/screens/payment/payment.dart';
+import 'package:kkservices/screens/settings.dart';
 import 'package:kkservices/widgets/drawer.dart';
 
 //import 'package:overlay_container/overlay_container.dart';
@@ -24,12 +26,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //page selected
   int indexPage = 0;
-  final List fragments = const [
+  final List fragments =  [
     BookingPage(),
     PaymentPage(),
-    MarkerPage(),
     FeedBackPage(),
+    SettingsPage(),
     ProfilePage(),
+    Cleaners(),
   ];
 
   bool _dropdownShown = false;

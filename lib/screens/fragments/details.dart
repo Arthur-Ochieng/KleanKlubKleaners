@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 var serviceList = [
-  {'title': 'Carpet Cleaning', 'duration': 45, 'price': 30},
-  {'title': 'Floor Cleaning', 'duration': 45, 'price': 30},
-  {'title': 'House Dusting', 'duration': 45, 'price': 30},
-  {'title': 'Laundry', 'duration': 45, 'price': 30},
+  {'title': 'Cleaner Bio', 'duration': 45, 'price': 30},
+  {'title': 'Phone Number', 'duration': 0712815240},
+  {'title': 'Jobs Completed', 'duration': 4,},
+  {'title': 'Reviews and Rating', 'duration': 4, 'price': 67},
+  //{'title': 'Laundry', 'duration': 45, 'price': 30},
 ];
 
 class DetailsPage extends StatelessWidget {
@@ -93,62 +94,54 @@ class DetailsPage extends StatelessWidget {
                             child: Column(
                               children: <Widget>[
                                 Row(
-                                  children: <Widget>[
-                                    const Text(
+                                  children: const <Widget>[
+                                    Text(
                                       "Angel Howard",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    const SizedBox(width: 10,),
-                                    const Text(
+                                    SizedBox(width: 10,),
+                                    Text(
                                       'Mar 9 2022',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w300,
                                         color: Colors.white,
                                       ),
                                     ),
-                                    const SizedBox(width: 30,),
-                                    const Icon(
+                                    SizedBox(width: 30,),
+                                    Icon(
                                       Icons.star,
                                       color: Color(0xffFF8573),
                                       size: 16,
                                     ),
-                                    const SizedBox(width: 2,),
-                                    const Icon(
+                                    SizedBox(width: 2,),
+                                    Icon(
                                       Icons.star,
                                       color: Color(0xffFF8573),
                                       size: 16,
                                     ),
-                                    const SizedBox(width: 2,),
-                                    const Icon(
+                                    SizedBox(width: 2,),
+                                    Icon(
                                       Icons.star,
                                       color: Color(0xffFF8573),
                                       size: 16,
                                     ),
-                                    const SizedBox(width: 2,),
-                                    const Icon(
+                                    SizedBox(width: 2,),
+                                    Icon(
                                       Icons.star,
                                       color: Color(0xffFF8573),
                                       size: 16,
                                     ),
-                                    const SizedBox(width: 2,),
-                                    const Icon(
+                                    SizedBox(width: 2,),
+                                    Icon(
                                       Icons.star,
                                       color: Color(0xffFF8573),
                                       size: 16,
                                     ),
                                   ],
                                 ),
-                                // SizedBox(height: 10,),
-                                // Text(
-                                //   'Cameron is the best colorist and stylish I have ever met. He is very talented and the best cleaner you could ask for',
-                                //   style: TextStyle(
-                                //     color: Colors.white,
-                                //     fontWeight: FontWeight.w300,
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),
@@ -289,7 +282,7 @@ class ServiceTile extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                '${service['duration']} Min',
+                '${service['duration']}',
                 style: const TextStyle(
                   color: Colors.grey,
                 ),
@@ -297,7 +290,7 @@ class ServiceTile extends StatelessWidget {
             ],
           ),
           Text(
-            '\$${service['price']}',
+            '${service['price']}',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
