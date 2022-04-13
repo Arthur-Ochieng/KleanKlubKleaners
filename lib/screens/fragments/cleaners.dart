@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kkservices/screens/fragments/details.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 const cleanerData = [
   {
@@ -29,7 +30,7 @@ const cleanerData = [
 ];
 
 class Cleaners extends StatelessWidget {
-  const Cleaners({Key? key}) : super(key: key);
+  Cleaners({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class Cleaners extends StatelessWidget {
                           height: 50,
                         ),
                         const Text(
-                          "Cleaners",
+                          "Available Cleaners",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,

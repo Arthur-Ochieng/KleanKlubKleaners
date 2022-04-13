@@ -9,6 +9,7 @@ import 'package:kkservices/screens/fragments/marker.dart';
 import 'package:kkservices/screens/fragments/notifications.dart';
 import 'package:kkservices/screens/fragments/profile.dart';
 import 'package:kkservices/screens/fragments/services.dart';
+import 'package:kkservices/screens/payment/payment.dart';
 import 'package:kkservices/widgets/drawer.dart';
 
 //import 'package:overlay_container/overlay_container.dart';
@@ -25,9 +26,7 @@ class _HomePageState extends State<HomePage> {
   int indexPage = 0;
   final List fragments = const [
     BookingPage(),
-    ServicesPage(
-      data: {},
-    ),
+    PaymentPage(),
     MarkerPage(),
     FeedBackPage(),
     ProfilePage(),

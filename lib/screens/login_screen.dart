@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kkservices/screens/home_page.dart';
 import 'package:kkservices/screens/intro.dart';
 import 'package:kkservices/screens/registration_screen.dart';
+import 'package:kkservices/screens/resetPass.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -93,6 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
+
+
     //Login Button
     final loginButton = Material(
       elevation: 5,
@@ -153,8 +156,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const RegistrationScreen()
-                                ),
+                                    builder: (context) =>
+                                        const RegistrationScreen()),
                               );
                             },
                             child: const Text(
@@ -165,7 +168,32 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fontSize: 15,
                               ),
                             ),
-                          )
+                          ),
+
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("Forgot"),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ResetPassPage()),
+                              );
+                            },
+                            child: const Text(
+                              "Password?",
+                              style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 15),
                         ],
                       ),
                     ],

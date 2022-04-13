@@ -32,14 +32,14 @@ class _MyDrawerState extends State<MyDrawer> {
 
   List<String> menus = [
     "Booking",
-    "Services",
+    "Payment",
     "Notifications",
     "FeedBack",
     "Profile",
   ];
   final List<IconData> icons = [
     Icons.home_outlined,
-    Icons.design_services,
+    Icons.money_off,
     Icons.message,
     Icons.history,
     Icons.person,
