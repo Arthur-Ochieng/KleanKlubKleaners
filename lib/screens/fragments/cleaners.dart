@@ -34,10 +34,10 @@ const cleanerData = [
 class Cleaners extends StatelessWidget {
   Cleaners({Key? key}) : super(key: key);
 
-  // final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
-  //     .collection('users')
-  //     .where('type', isEqualTo: "cleaner")
-  //     .snapshots();
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+      .collection('users')
+      .where('type', isEqualTo: "cleaner")
+      .snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -113,30 +113,35 @@ class Cleaners extends StatelessWidget {
                       //           .map((DocumentSnapshot document) {
                       //         Map<String, dynamic> data =
                       //             document.data()! as Map<String, dynamic>;
-                      //         //print(data['firstName']);
+
                       //         return ListView.builder(
                       //           itemCount: data.length,
                       //           itemBuilder: (context, index) {
+                      //             return ListTile(
+                      //               title: Text(data['firstName']),
+                                    
+                                    
+                      //             );
                       //             CleanerCard(data[index] as UserModel);
                       //           },
                       //         );
-                      // ListTile(
-                      //   title: Text(data['firstName']!),
-                      //   subtitle: Text(data['email']!),
-                      // );
-                      // }).toList(),
+                      //         // return ListTile(
+                      //         //   title: Text(data['firstName']!),
+                      //         //   subtitle: Text(data['email']!),
+                      //         // );
+                      //       }).toList(),
                       //     );
                       //   },
                       // ),
                       // ListView.builder(
                       //   itemCount: _usersStream.length,
-                      //   itemBuilder: (context, index){
+                      //   itemBuilder: (context, index) {
                       //     return CleanerCard(_usersStream[index] as UserModel);
                       //   },
-                      // )
-                      CleanerCard(cleanerData[0]),
-                      CleanerCard(cleanerData[1]),
-                      CleanerCard(cleanerData[2]),
+                      // ),
+                      //CleanerCard(UserModel),
+                      // CleanerCard(cleanerData[1]),
+                      // CleanerCard(cleanerData[2]),
                     ],
                   ),
                 ),
@@ -149,52 +154,52 @@ class Cleaners extends StatelessWidget {
   }
 }
 
-// class AddData extends StatelessWidget {
-//   AddData({Key? key}) : super(key: key);
+class AddData extends StatelessWidget {
+  AddData({Key? key}) : super(key: key);
 
-//   final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
-//           .collection('users')
-//           .where('type', isEqualTo: "cleaner")
-//           .snapshots()
-//       //.where(type = cleaner)
-//       ;
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+          .collection('users')
+          .where('type', isEqualTo: "cleaner")
+          .snapshots()
+      //.where(type = cleaner)
+      ;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.blueAccent,
-//       body: StreamBuilder<QuerySnapshot>(
-//         stream: _usersStream,
-//         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-//           if (snapshot.hasError) {
-//             return const Text('Something went wrong');
-//           }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueAccent,
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _usersStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Text('Something went wrong');
+          }
 
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return const Text("Loading");
-//           }
-//           return ListView(
-//             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-//               Map<String, dynamic> data =
-//                   document.data()! as Map<String, dynamic>;
-//               //print(data['firstName']);
-//               return ListTile(
-//                 title: Text(data['firstName']!),
-//                 subtitle: Text(data['email']!),
-//               );
-//             }).toList(),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Text("Loading");
+          }
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              //print(data['firstName']);
+              return ListTile(
+                title: Text(data['firstName']!),
+                subtitle: Text(data['email']!),
+              );
+            }).toList(),
+          );
+        },
+      ),
+    );
+  }
+}
 
 class CleanerCard extends StatelessWidget {
-  final cleaner;
-  CleanerCard(this.cleaner);
-  // final UserModel _cleaner;
-  // CleanerCard(this._cleaner);
+  // final cleaner;
+  // CleanerCard(this.cleaner);
+  final UserModel _cleaner;
+  CleanerCard(this._cleaner);
 
   @override
   Widget build(BuildContext context) {
@@ -204,16 +209,16 @@ class CleanerCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 4 - 20,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: cleaner['bgColor'],
-        //Color(0xffEBF6FF),
+        //color: cleaner['bgColor'],
+        color: Color(0xffEBF6FF),
       ),
       child: Stack(children: <Widget>[
         Positioned(
           top: 20,
           right: -60,
           child: Image.asset(
-            cleaner ['imgUrl'],
-            //'assets/icons/KK.png',
+            //cleaner ['imgUrl'],
+            'assets/icons/KK.png',
             width: MediaQuery.of(context).size.width * 0.60,
           ),
         ),
@@ -223,8 +228,8 @@ class CleanerCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                cleaner['cleanerName'],
-                //'${_cleaner.firstName}',
+                //cleaner['cleanerName'],
+                '${_cleaner.firstName}',
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
@@ -232,8 +237,8 @@ class CleanerCard extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                cleaner['company'],
-                //'${_cleaner.secondName}',
+                  //cleaner['company'],
+                  '${_cleaner.secondName}',
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                   )),
@@ -248,12 +253,12 @@ class CleanerCard extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    cleaner['rating'],
-                    style: const TextStyle(
-                      color: Color(0xff4E295B),
-                    ),
-                  ),
+                  // Text(
+                  //   cleaner['rating'],
+                  //   style: const TextStyle(
+                  //     color: Color(0xff4E295B),
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(
@@ -261,8 +266,10 @@ class CleanerCard extends StatelessWidget {
               ),
               MaterialButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailsPage(cleaner)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsPage(_cleaner)));
                 },
                 color: const Color(0xff4E295B),
                 shape: RoundedRectangleBorder(

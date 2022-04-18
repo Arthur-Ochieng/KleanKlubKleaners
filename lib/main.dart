@@ -1,17 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:kkservices/screens/feedback.dart';
-import 'package:kkservices/screens/fragments/cleaners.dart';
-import 'package:kkservices/screens/fragments/e_profile.dart';
-import 'package:kkservices/screens/home_page.dart';
-import 'package:kkservices/screens/login_screen.dart';
-import 'package:kkservices/screens/payment/payment.dart';
-import 'package:kkservices/screens/resetPass.dart';
-import 'package:kkservices/screens/settings.dart';
-import 'package:kkservices/screens/splash.dart';
 import 'package:kkservices/tests/test2.dart';
-import 'package:kkservices/tests/test3.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +26,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ubuntu',
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: AddData(),
     );
   }
 }
