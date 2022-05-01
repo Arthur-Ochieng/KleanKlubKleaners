@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kkservices/screens/calendar.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/tests/test2.dart';
+import 'package:kkservices/tests/test4.dart';
 import 'package:kkservices/widgets/DatePicker.dart';
 
 class ServicesPage extends StatefulWidget {
@@ -391,9 +392,9 @@ class _ServicesPageState extends State<ServicesPage> {
   }
 
   void openCalendarPage() {
-    FirebaseFirestore.instance.collection("booking").add(data);
+    //FirebaseFirestore.instance.collection("booking").add(data);
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Cleaners()));
+        context, MaterialPageRoute(builder: (context) => ConfirmTruce(data: data)));
   }
 
   Future pickDateTime() async {

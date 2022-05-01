@@ -86,8 +86,8 @@ class _MyDrawerState extends State<MyDrawer> {
                 padding: EdgeInsets.only(left: 10),
                 child: AppTextNormal(
                   text: ("${AuthService().currentUser?.displayName}"),
-                  //text: displayName,
-                  //text: ("Name"),
+                  // text: displayName,
+                  // text: ("Name"),
                   color: Colors.black54,
                   size: 25,
                 ),
