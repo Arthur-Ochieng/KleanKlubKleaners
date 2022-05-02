@@ -139,9 +139,9 @@ class Cleaners extends StatelessWidget {
                       //     return CleanerCard(_usersStream[index] as UserModel);
                       //   },
                       // ),
-                      //CleanerCard(UserModel),
-                      // CleanerCard(cleanerData[1]),
-                      // CleanerCard(cleanerData[2]),
+                      CleanerCard(cleanerData[0]),
+                      CleanerCard(cleanerData[1]),
+                      CleanerCard(cleanerData[2]),
                     ],
                   ),
                 ),
@@ -196,10 +196,10 @@ class AddData extends StatelessWidget {
 }
 
 class CleanerCard extends StatelessWidget {
-  // final cleaner;
-  // CleanerCard(this.cleaner);
-  final UserModel _cleaner;
-  CleanerCard(this._cleaner);
+  final cleaner;
+  CleanerCard(this.cleaner);
+  // final UserModel _cleaner;
+  // CleanerCard(this._cleaner);
 
   @override
   Widget build(BuildContext context) {
@@ -209,16 +209,16 @@ class CleanerCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 4 - 20,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        //color: cleaner['bgColor'],
-        color: Color(0xffEBF6FF),
+        color: cleaner['bgColor'],
+        //color: Color(0xffEBF6FF),
       ),
       child: Stack(children: <Widget>[
         Positioned(
           top: 20,
           right: -60,
           child: Image.asset(
-            //cleaner ['imgUrl'],
-            'assets/icons/KK.png',
+            cleaner ['imgUrl'],
+            //'assets/icons/KK.png',
             width: MediaQuery.of(context).size.width * 0.60,
           ),
         ),
@@ -228,8 +228,8 @@ class CleanerCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                //cleaner['cleanerName'],
-                '${_cleaner.firstName}',
+                cleaner['cleanerName'],
+                //'${_cleaner.firstName}',
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
@@ -237,8 +237,8 @@ class CleanerCard extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                  //cleaner['company'],
-                  '${_cleaner.secondName}',
+                  cleaner['company'],
+                  //'${_cleaner.secondName}',
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                   )),
@@ -253,12 +253,12 @@ class CleanerCard extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  // Text(
-                  //   cleaner['rating'],
-                  //   style: const TextStyle(
-                  //     color: Color(0xff4E295B),
-                  //   ),
-                  // ),
+                  Text(
+                    cleaner['rating'],
+                    style: const TextStyle(
+                      color: Color(0xff4E295B),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -269,7 +269,7 @@ class CleanerCard extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetailsPage(_cleaner)));
+                          builder: (context) => DetailsPage(cleaner)));
                 },
                 color: const Color(0xff4E295B),
                 shape: RoundedRectangleBorder(
