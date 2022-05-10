@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kkservices/screens/fragments/services.dart';
+import 'package:kkservices/screens/bookings/services.dart';
+import 'package:kkservices/screens/bookings/services.dart';
 
 class MarkerPage extends StatefulWidget {
   const MarkerPage({Key? key}) : super(key: key);
@@ -51,6 +52,7 @@ class _MarkerState extends State<MarkerPage> {
       height: double.maxFinite,
       width: double.maxFinite,
       child: Stack(
+        
         children: [
           GoogleMap(
             mapType: MapType.normal,
@@ -74,7 +76,20 @@ class _MarkerState extends State<MarkerPage> {
                 markers[markerId] = marker;
               });
             },
-          ),
+          ),      
+          // Positioned(
+          //   top: 50,
+          //   left: 20,
+          //   child: IconButton(
+          //     onPressed: () {
+          //       Navigator.pop(context);
+          //     },
+          //     icon: const Icon(
+          //       Icons.arrow_back_ios,
+          //       color: Colors.blueAccent,
+          //     ),
+          //   ),
+          // ),
           Positioned(
             top: 40,
             left: 20,
@@ -85,9 +100,9 @@ class _MarkerState extends State<MarkerPage> {
                   borderRadius: BorderRadius.circular(0)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children:[
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: EdgeInsets.only(top: 5.0),
                     child: TextFormField(
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.only(left: 8),

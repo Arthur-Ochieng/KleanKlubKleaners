@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kkservices/screens/fragments/details.dart';
-import 'package:kkservices/screens/fragments/marker.dart';
-import 'package:kkservices/tests/test6.dart';
+import 'package:kkservices/screens/bookings/marker.dart';
+import 'package:kkservices/screens/bookings/test6.dart';
 
 class ConfirmTruce extends StatefulWidget {
   final Map<String, dynamic> data;

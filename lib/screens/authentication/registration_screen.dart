@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kkservices/models/user_model.dart';
-import 'package:kkservices/screens/intro.dart';
-import 'package:kkservices/screens/login_screen.dart';
+import 'package:kkservices/screens/authentication/login_screen.dart';
+import 'package:kkservices/screens/authentication/verify.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -25,6 +25,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
   final confirmPasswordEditingController = TextEditingController();
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  User? get currentUser => _firebaseAuth.currentUser;
+
   @override
   Widget build(BuildContext context) {
     //firstName field
@@ -214,8 +218,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: SingleChildScrollView(
           child: Container(
             color: Colors.white,
-            // child: Padding(
-            //   padding: EdgeInsets.all(36.0)),
             child: Padding(
               padding: const EdgeInsets.all(36.0),
               child: Form(
@@ -280,14 +282,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     if (_formKey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore()})
+          .then((value) => {
+            postDetailsToFirestore(),
+            currentUser?.updateDisplayName(firstNameEditingController.text),
+          })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
     }
   }
 
-  postDetailsToFirestore() async {
+  postDetailsToFirestore() async { 
     //calling our firestore
     //calling our user model
     //sending them values
@@ -312,7 +317,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => const VerifyPage()),
         (route) => false);
   }
 }

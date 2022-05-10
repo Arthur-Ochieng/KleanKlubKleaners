@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kkservices/screens/home_page.dart';
-import 'package:kkservices/screens/intro.dart';
-import 'package:kkservices/screens/registration_screen.dart';
-import 'package:kkservices/screens/resetPass.dart';
+import 'package:kkservices/screens/authentication/intro.dart';
+import 'package:kkservices/screens/authentication/registration_screen.dart';
+import 'package:kkservices/screens/authentication/resetPass.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             },
                             child: const Text(
-                              "Signup",
+                              " Signup",
                               style: TextStyle(
                                 color: Colors.blueAccent,
                                 fontWeight: FontWeight.bold,
@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             },
                             child: const Text(
-                              "Password?",
+                              " Password?",
                               style: TextStyle(
                                 color: Colors.blueAccent,
                                 fontWeight: FontWeight.bold,

@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/calendar.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
 import 'package:kkservices/tests/test2.dart';
-import 'package:kkservices/tests/test4.dart';
+import 'package:kkservices/screens/bookings/test4.dart';
 import 'package:kkservices/widgets/DatePicker.dart';
 
 class ServicesPage extends StatefulWidget {
@@ -32,11 +31,14 @@ class _ServicesPageState extends State<ServicesPage> {
     final hours = dateTime.hour.toString().padLeft(2, '0');
     final minutes = dateTime.minute.toString().padLeft(2, '0');
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Select Service"),
+      ),
       backgroundColor: Colors.blueAccent,
       body: Column(
         children: [
           Expanded(
-            child: Container(
+            child: Container(              
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
@@ -58,7 +60,7 @@ class _ServicesPageState extends State<ServicesPage> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: [                                           
                       InkWell(
                         onTap: () {
                           changeCleaningType("initial");
@@ -66,7 +68,7 @@ class _ServicesPageState extends State<ServicesPage> {
                         child: Column(
                           children: [
                             Container(
-                              height: 140,
+                              height: 130,
                               width: MediaQuery.of(context).size.width * 0.43,
                               decoration: const BoxDecoration(
                                 color: Color(0xffdfdeff),
@@ -94,7 +96,7 @@ class _ServicesPageState extends State<ServicesPage> {
                                 shape: BoxShape.circle,
                                 color: Color(0xffededed),
                               ),
-                              child: (selectedType == "Initial")
+                              child: (selectedType == "initial")
                                   ? const Icon(
                                       Icons.check_circle,
                                       color: Colors.blueAccent,

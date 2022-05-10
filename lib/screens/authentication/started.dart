@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/intro.dart';
-import 'package:kkservices/screens/login_screen.dart';
+import 'package:kkservices/screens/authentication/intro.dart';
+import 'package:kkservices/screens/authentication/login_screen.dart';
 
 class GetStarted extends StatefulWidget {
   const GetStarted({Key? key}) : super(key: key);

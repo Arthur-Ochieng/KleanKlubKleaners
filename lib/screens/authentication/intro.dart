@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kkservices/models/services.dart';
 import 'package:kkservices/models/services.dart';
-import 'package:kkservices/screens/login_screen.dart';
-import 'package:kkservices/screens/notifications.dart';
-import 'package:kkservices/screens/feedback.dart';
+import 'package:kkservices/screens/authentication/login_screen.dart';
+import 'package:kkservices/screens/feedback/feedback.dart';
 
 
 class MainPage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/fragments/e_profile.dart';
+import 'package:kkservices/screens/profile/e_profile.dart';
 import 'package:kkservices/widgets/constants.dart';
 
 class ProfilePage extends StatefulWidget {

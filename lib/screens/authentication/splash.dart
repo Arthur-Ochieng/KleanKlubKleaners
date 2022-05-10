@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/started.dart';
+import 'package:kkservices/screens/authentication/started.dart';
 
 class Splash extends StatefulWidget {
   const Splash({ Key? key }) : super(key: key);

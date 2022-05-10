@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kkservices/models/auth.dart';
-import 'package:kkservices/screens/fragments/marker.dart';
+import 'package:kkservices/screens/bookings/marker.dart';
 import 'package:kkservices/widgets/category_card.dart';
 import 'package:kkservices/widgets/constants.dart';
 
@@ -25,7 +25,7 @@ class _BookingPageState extends State<BookingPage> {
                 height: 15,
               ),
                Text(
-                "${AuthService().currentUser?.displayName}",
+                "Welcome ${AuthService().currentUser?.displayName}",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
