@@ -4,9 +4,9 @@ import 'package:kkservices/screens/bookings/summary.dart';
 
 class DisplayDetails extends StatefulWidget {
   final Map<String, dynamic> data;
-  final Map<String, dynamic> cleaner_data;
+  final Map<String, dynamic> cleanerData;
   const DisplayDetails(
-      {Key? key, required this.data, required this.cleaner_data})
+      {Key? key, required this.data, required this.cleanerData})
       : super(key: key);
 
   @override
@@ -15,12 +15,12 @@ class DisplayDetails extends StatefulWidget {
 
 class _DisplayDetailsState extends State<DisplayDetails> {
   Map<String, dynamic> data = {};
-  Map<String, dynamic> cleaner_data = {};
+  Map<String, dynamic> cleanerData = {};
   @override
   void initState() {
     super.initState();
     data = widget.data;
-    cleaner_data = widget.cleaner_data;
+    cleanerData = widget.cleanerData;
   }
 
   @override
@@ -32,8 +32,8 @@ class _DisplayDetailsState extends State<DisplayDetails> {
       body: Column(children: <Widget>[
         ListTile(
           title: Text(
-              cleaner_data['firstName']! + ' ' + cleaner_data['secondName']),
-          subtitle: Text(cleaner_data['email']!),
+              cleanerData['firstName']! + ' ' + cleanerData['secondName']),
+          subtitle: Text(cleanerData['email']!),
           trailing: ElevatedButton(
             onPressed: () {
              
@@ -42,7 +42,6 @@ class _DisplayDetailsState extends State<DisplayDetails> {
                   .add(data)
                   .then((value) {
                 data['documentID'] = value.id;
-                print(value.id);
                 Navigator.push(
                     context,
                     MaterialPageRoute(

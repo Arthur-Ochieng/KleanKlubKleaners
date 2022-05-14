@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/fragments/cleaners.dart';
-import 'package:kkservices/tests/test2.dart';
-import 'package:kkservices/screens/bookings/test4.dart';
-import 'package:kkservices/widgets/DatePicker.dart';
+import 'package:kkservices/screens/bookings/available_cleaners.dart';
 
 class ServicesPage extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -283,7 +279,7 @@ class _ServicesPageState extends State<ServicesPage> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -336,7 +332,6 @@ class _ServicesPageState extends State<ServicesPage> {
 
   void changeFrequency(String frequency) {
     selectedFrequency = frequency;
-    print(data);
     setState(() {
       data['service'] = frequency;
       //print(frequency);

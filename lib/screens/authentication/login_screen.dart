@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kkservices/screens/home_page.dart';
-import 'package:kkservices/screens/authentication/intro.dart';
 import 'package:kkservices/screens/authentication/registration_screen.dart';
 import 'package:kkservices/screens/authentication/resetPass.dart';
 
@@ -107,10 +106,6 @@ class _LoginScreenState extends State<LoginScreen> {
         onPressed: () {
           signIn(emailController.text, passwordController.text);
         },
-        // () {
-        //   Navigator.push(
-        //   context, MaterialPageRoute(builder: (context) => const LandingPage()));
-        // },
         child: const Text(
           "Login",
           textAlign: TextAlign.center,
@@ -172,11 +167,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         ],
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("Forgot"),
+                          const Text("Forgot"),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -193,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                         ],
                       ),
                     ],

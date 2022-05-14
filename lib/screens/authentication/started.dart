@@ -1,6 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/authentication/intro.dart';
 import 'package:kkservices/screens/authentication/login_screen.dart';
 
 class GetStarted extends StatefulWidget {
@@ -68,7 +66,7 @@ class _GetStartedState extends State<GetStarted> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     );
                   },

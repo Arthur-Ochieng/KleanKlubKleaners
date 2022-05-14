@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kkservices/screens/bookings/services.dart';
 import 'package:kkservices/screens/bookings/services.dart';
 
 class MarkerPage extends StatefulWidget {
@@ -13,7 +11,7 @@ class MarkerPage extends StatefulWidget {
 
 class _MarkerState extends State<MarkerPage> {
   GoogleMapController? controller;
-  LatLng _markerPos = LatLng(-1.286389, 36.817223);
+  LatLng _markerPos = const LatLng(-1.286389, 36.817223);
 
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   MarkerId? selectedMarker;
@@ -102,7 +100,7 @@ class _MarkerState extends State<MarkerPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:[
                   Padding(
-                    padding: EdgeInsets.only(top: 5.0),
+                    padding: const EdgeInsets.only(top: 5.0),
                     child: TextFormField(
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.only(left: 8),

@@ -28,17 +28,15 @@ class _SplashState extends State<Splash> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 150,
               width: 100,
               child: Image.asset('assets/icons/KK.png'),
               //color: Colors.blueAccent,
             ),
-            Container(
-              child: const Text(
-                'Klean Klub Services',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+            const Text(
+              'Klean Klub Services',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],
         ),

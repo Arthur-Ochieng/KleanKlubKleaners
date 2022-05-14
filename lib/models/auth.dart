@@ -6,10 +6,8 @@ class AuthService {
 
   Future<User?> getOrCreateUser() async {
     if (currentUser != null) {
-      print(currentUser);
       //await _firebaseAuth.signInAnonymously();
     } else
-      print("User is not signed in");
     return currentUser;
   }
 }

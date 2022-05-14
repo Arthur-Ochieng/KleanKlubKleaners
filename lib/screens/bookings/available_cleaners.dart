@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/fragments/details.dart';
-import 'package:kkservices/screens/bookings/marker.dart';
 import 'package:kkservices/screens/bookings/test6.dart';
 
 class ConfirmTruce extends StatefulWidget {
@@ -44,24 +42,24 @@ class _ConfirmTruceState extends State<ConfirmTruce> {
         }
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            Map<String, dynamic> cleaner_data =
+            Map<String, dynamic> cleanerData =
                 document.data()! as Map<String, dynamic>;
 
             return ListTile(
-              title: Text(cleaner_data['firstName']! +
+              title: Text(cleanerData['firstName']! +
                   ' ' +
-                  cleaner_data['secondName']),
-              subtitle: Text(cleaner_data['email']!),
+                  cleanerData['secondName']),
+              subtitle: Text(cleanerData['email']!),
               trailing: ElevatedButton(
                 onPressed: () {
-                  data['cleaner'] = cleaner_data['firstName'];
-                  data['cleaner_uid'] = cleaner_data['uid'];
+                  data['cleaner'] = cleanerData['firstName'];
+                  data['cleaner_uid'] = cleanerData['uid'];
                   //print(cleaner_data);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => DisplayDetails(
-                              data: data, cleaner_data: cleaner_data)));
+                              data: data, cleanerData: cleanerData)));
                 },
                 child: const Text("View Profile"),
               ),

@@ -56,7 +56,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           shape: BoxShape.circle,
                           image: const DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage('KK.png'),
+                            image: AssetImage('assets/icons/KK.png'),
                           ),
                         ),
                       ),
