@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DateTimePage extends StatefulWidget {
-  const DateTimePage({ Key? key }) : super(key: key);
+  const DateTimePage({Key? key}) : super(key: key);
 
   @override
   State<DateTimePage> createState() => _DateTimePageState();
@@ -24,9 +24,6 @@ class _DateTimePageState extends State<DateTimePage> {
           keyboardType: TextInputType.phone,
           decoration: const InputDecoration(
             disabledBorder: InputBorder.none,
-            // border: OutlineInputBorder(
-            //     borderSide: BorderSide.none
-            // ),
             hintText: "Enter Number of Rooms",
             hintStyle: TextStyle(color: Colors.black54),
             prefixIcon: Icon(
@@ -35,9 +32,13 @@ class _DateTimePageState extends State<DateTimePage> {
             ),
           ),
         ),
-        //SizedBox(height: 16),
-        
       ),
     );
+  }
+
+  void Calculation(_numController) {
+    var val = int.parse(_numController.value);
+    var estimate = val * 250;
+    print(estimate);
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kkservices/models/user.dart';
-import 'package:kkservices/models/user_model.dart';
 import 'package:kkservices/screens/fragments/details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -96,49 +94,6 @@ class Cleaners extends StatelessWidget {
                           fontSize: 24,
                         ),
                       ),
-                      // StreamBuilder<QuerySnapshot>(
-                      //   stream: _usersStream,
-                      //   builder: (BuildContext context,
-                      //       AsyncSnapshot<QuerySnapshot> snapshot) {
-                      //     if (snapshot.hasError) {
-                      //       return const Text('Something went wrong');
-                      //     }
-
-                      //     if (snapshot.connectionState ==
-                      //         ConnectionState.waiting) {
-                      //       return const Text("Loading");
-                      //     }
-                      //     return ListView(
-                      //       children: snapshot.data!.docs
-                      //           .map((DocumentSnapshot document) {
-                      //         Map<String, dynamic> data =
-                      //             document.data()! as Map<String, dynamic>;
-
-                      //         return ListView.builder(
-                      //           itemCount: data.length,
-                      //           itemBuilder: (context, index) {
-                      //             return ListTile(
-                      //               title: Text(data['firstName']),
-                                    
-                                    
-                      //             );
-                      //             CleanerCard(data[index] as UserModel);
-                      //           },
-                      //         );
-                      //         // return ListTile(
-                      //         //   title: Text(data['firstName']!),
-                      //         //   subtitle: Text(data['email']!),
-                      //         // );
-                      //       }).toList(),
-                      //     );
-                      //   },
-                      // ),
-                      // ListView.builder(
-                      //   itemCount: _usersStream.length,
-                      //   itemBuilder: (context, index) {
-                      //     return CleanerCard(_usersStream[index] as UserModel);
-                      //   },
-                      // ),
                       CleanerCard(cleanerData[0]),
                       CleanerCard(cleanerData[1]),
                       CleanerCard(cleanerData[2]),
@@ -198,8 +153,6 @@ class AddData extends StatelessWidget {
 class CleanerCard extends StatelessWidget {
   final cleaner;
   CleanerCard(this.cleaner);
-  // final UserModel _cleaner;
-  // CleanerCard(this._cleaner);
 
   @override
   Widget build(BuildContext context) {

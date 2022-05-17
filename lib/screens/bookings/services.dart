@@ -21,6 +21,8 @@ class _ServicesPageState extends State<ServicesPage> {
   }
 
   DateTime dateTime = DateTime(2022, 12, 24, 5, 30);
+  bool isVisible = true;
+  final TextEditingController _numController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class _ServicesPageState extends State<ServicesPage> {
       body: Column(
         children: [
           Expanded(
-            child: Container(              
+            child: Container(
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
@@ -56,7 +58,7 @@ class _ServicesPageState extends State<ServicesPage> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [                                           
+                    children: [
                       InkWell(
                         onTap: () {
                           changeCleaningType("initial");
@@ -179,6 +181,8 @@ class _ServicesPageState extends State<ServicesPage> {
                                       color: Colors.black.withOpacity(0.3)),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10))),
+
+                              
                           child: Center(
                             child: Text(
                               "Laundry",
@@ -331,6 +335,27 @@ class _ServicesPageState extends State<ServicesPage> {
   }
 
   void changeFrequency(String frequency) {
+    // Visibility(
+    //   child: TextFormField(
+    //     controller: _numController,
+    //     validator: (value) {
+    //       if (value!.isEmpty) {
+    //         return "Required";
+    //       }
+    //       return null;
+    //     },
+    //     keyboardType: TextInputType.phone,
+    //     decoration: const InputDecoration(
+    //       disabledBorder: InputBorder.none,
+    //       hintText: "Enter Number of Rooms",
+    //       hintStyle: TextStyle(color: Colors.black54),
+    //       prefixIcon: Icon(
+    //         Icons.room_service,
+    //         color: Colors.black,
+    //       ),
+    //     ),
+    //   ),
+    // );
     selectedFrequency = frequency;
     setState(() {
       data['service'] = frequency;
@@ -390,8 +415,8 @@ class _ServicesPageState extends State<ServicesPage> {
 
   void openCalendarPage() {
     //FirebaseFirestore.instance.collection("booking").add(data);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ConfirmTruce(data: data)));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ConfirmTruce(data: data)));
   }
 
   Future pickDateTime() async {
@@ -410,8 +435,11 @@ class _ServicesPageState extends State<ServicesPage> {
     );
     setState(() {
       this.dateTime = dateTime;
-      data['date'] =
-          date.year.toString() + '/' + date.month.toString() + '/' + date.day.toString();
+      data['date'] = date.year.toString() +
+          '/' +
+          date.month.toString() +
+          '/' +
+          date.day.toString();
       data['time'] = time.hour.toString() + ':' + time.minute.toString();
     });
   }

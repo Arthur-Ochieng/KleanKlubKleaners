@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:kkservices/screens/feedback/feedback.dart';
 import 'package:kkservices/screens/bookings/booking.dart';
 import 'package:kkservices/screens/fragments/cleaners.dart';
-import 'package:kkservices/screens/profile/new_profile.dart';
-import 'package:kkservices/screens/profile/profile.dart';
+import 'package:kkservices/screens/orders/orders.dart';
 import 'package:kkservices/screens/payment/payment.dart';
+import 'package:kkservices/screens/profile/new_profile.dart';
 import 'package:kkservices/screens/settings/settings.dart';
 import 'package:kkservices/widgets/drawer.dart';
-
-//import 'package:overlay_container/overlay_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,14 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   //page selected
   int indexPage = 0;
   final List fragments =  [
-    BookingPage(),
-    PaymentPage(),
-    FeedBackPage(),
-    SettingsPage(),
-    ProfileUIPage(),
+    const BookingPage(),
+    const OrdersPage(),
+    const FeedBackPage(),
+    const SettingsPage(),
+    const ProfileUIPage(),
     Cleaners(),
   ];
 
@@ -45,6 +44,7 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        elevation: 0,
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
           },
           icon: const Icon(
             Icons.menu,
+            color: Colors.black,
           ),
         ),
         actions: [
@@ -59,6 +60,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: _toggleDropdown,
             icon: const Icon(
               Icons.notifications,
+              color: Colors.black,
             ),
           )
         ],

@@ -14,15 +14,6 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     final paymentController = Get.put(PaymentController());
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   title: Text(
-      //     "Make Payment",
-      //     style: TextStyle(
-      //       color: Colors.blueAccent,
-      //     ),
-      //   ),
-      // ),
       body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
