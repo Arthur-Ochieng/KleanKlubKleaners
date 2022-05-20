@@ -32,7 +32,7 @@ class _MyDrawerState extends State<MyDrawer> {
   List<String> menus = [
     "Booking",
     "Orders",
-    "FeedBack",
+    "History",
     "Settings",
     "Profile",
   ];

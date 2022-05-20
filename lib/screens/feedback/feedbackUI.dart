@@ -1,178 +1,276 @@
-// import 'package:flutter/material.dart';
+import 'package:animated_textformfields/animated_textformfield/animated_textformfield.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:kkservices/screens/home_page.dart';
 
-// class FormTwo extends StatefulWidget {
-//   @override
-//   _FormTwoState createState() => _FormTwoState();
-// }
+class FeedbackScreen extends StatefulWidget {
+  @override
+  _FeedbackScreenState createState() => _FeedbackScreenState();
+}
 
-// class _FormTwoState extends State<FormTwo> with Validator {
-//   final TextEditingController _messageController = TextEditingController();
-//   final TextEditingController _emailController = TextEditingController();
-//   final TextEditingController _nameController = TextEditingController();
+class _FeedbackScreenState extends State<FeedbackScreen> {
+  FocusNode myFocusNode = FocusNode();
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  double rating = 0;
 
-//   final double minValue = 8.0;
-//   final _feedbackTypeList = <String>["Comments", "Bugs", "Questions"];
+  final feedbackEditingController = TextEditingController();
 
-//   String _feedbackType = "";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 45.0, left: 10),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      size: 26,
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Text(
+                    "Give Feedback",
+                    style: GoogleFonts.nunitoSans(
+                        fontSize: 26, color: Colors.black),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 80,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "How did we do?",
+                  style:
+                      GoogleFonts.nunitoSans(fontSize: 20, color: Colors.black),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () => showRating(),
+              child: const Text(
+                "Rate the cleaner and the cleaning services",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Text(
+                "Rating: $rating",
+                style: const TextStyle(fontSize: 25),
+              ),
+            ),
+            const SizedBox(height: 10),
+            buildRating(),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "share info about it?",
+                  style:
+                      GoogleFonts.nunitoSans(fontSize: 20, color: Colors.black),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            AnimatedTextFormField(
+              controller: feedbackEditingController,
+              width: MediaQuery.of(context).size.width,
+              maxLines: 90,
+              height: 200,
+              textStyle: const TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+              ),
+              focusNode: myFocusNode,
+              validator: (val) {
+                if (val.isEmpty) {
+                  return "please enter feedback";
+                }
+                return null;
+              },
+              cornerRadius: BorderRadius.circular(10.0),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 70, right: 70),
+              child: AnimatedButton(
+                  height: 50,
+                  isReverse: true,
+                  selectedTextColor: Colors.black,
+                  transitionType: TransitionType.LEFT_TO_RIGHT,
+                  backgroundColor: Colors.blueAccent,
+                  borderColor: Colors.white,
+                  borderRadius: 10,
+                  borderWidth: 2,
+                  text: "Send Feedback",
+                  onPress: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => const FeedBackDialog());
+                  }),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+              child: const Text(
+                "HOME",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
-//   final TextStyle _errorStyle = const TextStyle(
-//     color: Colors.red,
-//     fontSize: 16.6,
-//   );
+  void showRating() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Rate the cleaning experience"),
+        content: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              "Please leave a star rating",
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            buildRating(),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'OK',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
-//   @override
-//   initState() {
-//     _feedbackType = _feedbackTypeList[0];
-//     super.initState();
-//   }
+  Widget buildRating() => RatingBar.builder(
+        initialRating: rating,
+        itemBuilder: (context, _) =>
+            const Icon(Icons.star, color: Colors.amber),
+        updateOnDrag: true,
+        onRatingUpdate: (rating) => setState(() {
+          this.rating = rating;
+        }),
+        minRating: 1,
+        itemSize: 35,
+        // itemPadding: const EdgeInsets.symmetric(horizontal: 4),
+      );
+}
 
-//   Widget _buildAssetHeader() {
-//     return Container(
-//       width: double.maxFinite,
-//       height: 230.0,
-//       child: Container(),
-//       decoration: const BoxDecoration(
-//           image: DecorationImage(
-//               image: AssetImage("assets/images/feedback-two.png"),
-//               fit: BoxFit.cover)
-//       ),
-//     );
-//   }
+class FeedBackDialog extends StatefulWidget {
+  const FeedBackDialog({Key? key}) : super(key: key);
 
-//   Widget _buildCategory() {
-//     return Container(
-//       padding: EdgeInsets.symmetric(
-//           vertical: minValue * 2, horizontal: minValue * 3),
-//       child: Row(
-//         children: <Widget>[
-//           const Text(
-//             "Select feedback type",
-//             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-//           ),
-//           SizedBox(
-//             width: minValue * 2,
-//           ),
-//           Expanded(
-//               child: Align(
-//             alignment: Alignment.centerRight,
-//             // child: DropdownButton<String>(
-//             //   onChanged: (String type) {
-//             //     setState(() {
-//             //       _feedbackType = type;
-//             //     });
-//             //   },
-//             //   hint: Text(
-//             //     "$_feedbackType",
-//             //     style: const TextStyle(fontSize: 16.0),
-//             //   ),
-//             //   items: _feedbackTypeList
-//             //       .map((type) => DropdownMenuItem<String>(
-//             //             child: Text("$type"),
-//             //             value: type,
-//             //           ))
-//             //       .toList(),
-//             // ),
-//           ))
-//         ],
-//       ),
-//     );
-//   }
+  @override
+  State<FeedBackDialog> createState() => _FeedBackDialogState();
+}
 
-//   Widget _buildName() {
-//     return Padding(
-//       padding: EdgeInsets.symmetric(horizontal: minValue * 3),
-//       child: TextFormField(
-//         controller: _nameController,
-//         //validator: usernameValidator,
-//         keyboardType: TextInputType.text,
-//         decoration: InputDecoration(
-//             errorStyle: _errorStyle,
-//             contentPadding:
-//                 EdgeInsets.symmetric(vertical: minValue, horizontal: minValue),
-//             hintText: 'Full Name',
-//             labelText: 'Full  Name',
-//             labelStyle: const TextStyle(fontSize: 16.0, color: Colors.black87)),
-//       ),
-//     );
-//   }
+class _FeedBackDialogState extends State<FeedBackDialog> {
+  final TextEditingController _controller = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
-//   Widget _buildEmail() {
-//     return Padding(
-//       padding: EdgeInsets.symmetric(horizontal: minValue * 3),
-//       child: TextFormField(
-//         controller: _emailController,
-//         keyboardType: TextInputType.text,
-//         //validator: validateEmail,
-//         onChanged: (String value) {},
-//         readOnly: true,
-//         decoration: InputDecoration(
-//             errorStyle: _errorStyle,
-//             border: const UnderlineInputBorder(),
-//             contentPadding:
-//                 EdgeInsets.symmetric(vertical: minValue, horizontal: minValue),
-//             labelText: 'Email',
-//             labelStyle: const TextStyle(fontSize: 16.0, color: Colors.black87)),
-//       ),
-//     );
-//   }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
-//   Widget _buildDescription() {
-//     return Padding(
-//       padding: EdgeInsets.symmetric(horizontal: minValue * 3),
-//       child: TextFormField(
-//         controller: _messageController,
-//         keyboardType: TextInputType.text,
-//         maxLines: 2,
-//         decoration: InputDecoration(
-//             errorStyle: _errorStyle,
-//             labelText: 'Description',
-//             contentPadding:
-//                 EdgeInsets.symmetric(vertical: minValue, horizontal: minValue),
-//             labelStyle: const TextStyle(fontSize: 16.0, color: Colors.black87)),
-//       ),
-//     );
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      content: Form(
+          key: _formKey,
+          child: TextFormField(
+            controller: _controller,
+            keyboardType: TextInputType.multiline,
+            decoration: const InputDecoration(
+              hintText: 'Enter your feedback here',
+              filled: true,
+            ),
+            maxLines: 5,
+            maxLength: 4096,
+            textInputAction: TextInputAction.done,
+            validator: (String? text) {
+              if (text == null || text.isEmpty) {
+                return 'Please enter a value';
+              }
+              return null;
+            },
+          )),
+      actions: [
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel')),
+        TextButton(
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                String message;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       appBar: AppBar(
-//         backgroundColor: Colors.grey[50],
-//         leading: IconButton(
-//             icon: const Icon(Icons.close),
-//             color: Colors.black87,
-//             onPressed: () => null),
-//         elevation: 1,
-//         title: const Text(
-//           "Leave feedback",
-//           style: const TextStyle(color: Colors.black87),
-//         ),
-//         actions: <Widget>[
-//           FlatButton(onPressed: () => null, child: const Text("POST"))
-//         ],
-//       ),
-//       body: ListView(
-//         children: <Widget>[
-//           _buildAssetHeader(),
-//           _buildCategory(),
-//           SizedBox(
-//             height: minValue,
-//           ),
-//           _buildName(),
-//           SizedBox(
-//             height: minValue * 3,
-//           ),
-//           _buildEmail(),
-//           SizedBox(
-//             height: minValue * 3,
-//           ),
-//           _buildDescription(),
-//           SizedBox(
-//             height: minValue * 3,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+                try {
+                  final collection =
+                      FirebaseFirestore.instance.collection('feedback');
+                  await collection.doc().set({
+                    'timestamp': FieldValue.serverTimestamp(),
+                    'feedback': _controller.text,
+                  });
+                  message = "Feedback sent successfully";
+                } catch (_) {
+                  message = 'Error when sending feedback';
+                }
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(message)));
+                Navigator.pop(context);
+              }
+            },
+            child: const Text('Send')),
+      ],
+    );
+  }
+}

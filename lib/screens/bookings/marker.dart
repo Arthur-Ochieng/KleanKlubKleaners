@@ -75,19 +75,6 @@ class _MarkerState extends State<MarkerPage> {
               });
             },
           ),      
-          // Positioned(
-          //   top: 50,
-          //   left: 20,
-          //   child: IconButton(
-          //     onPressed: () {
-          //       Navigator.pop(context);
-          //     },
-          //     icon: const Icon(
-          //       Icons.arrow_back_ios,
-          //       color: Colors.blueAccent,
-          //     ),
-          //   ),
-          // ),
           Positioned(
             top: 40,
             left: 20,
@@ -187,7 +174,6 @@ class _MarkerState extends State<MarkerPage> {
                           MaterialPageRoute(
                             builder: (context) => ServicesPage(data: data),
                           ));
-                      //print(_markerPos);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff3C2593),

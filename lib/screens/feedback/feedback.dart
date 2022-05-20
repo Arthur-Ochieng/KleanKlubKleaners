@@ -61,7 +61,8 @@ class _FeedBackDialogState extends State<FeedBackDialog> {
               }
               return null;
             },
-          )),
+          )
+        ),
       actions: [
         TextButton(
             onPressed: () => Navigator.pop(context),

@@ -95,21 +95,21 @@ class _ConfirmTruceState extends State<ConfirmTruce> {
                                 )),
                             const SizedBox(height: 10),
                             Row(
-                              children: const <Widget>[
-                                Icon(
+                              children: <Widget>[
+                                const Icon(
                                   Icons.star,
                                   size: 16,
                                   color: Color(0xff4E295B),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
-                                // Text(
-                                //   cleanerData['rating'],
-                                //   style: const TextStyle(
-                                //     color: Color(0xff4E295B),
-                                //   ),
-                                // ),
+                                Text(
+                                  cleanerData['ratings'],
+                                  style: const TextStyle(
+                                    color: Color(0xff4E295B),
+                                  ),
+                                ),
                               ],
                             ),
                             const SizedBox(
@@ -120,6 +120,7 @@ class _ConfirmTruceState extends State<ConfirmTruce> {
                                 data['cleaner'] = cleanerData['firstName'];
                                 data['cleaner_uid'] = cleanerData['uid'];
                                 data['client_uid'] = userID;
+                                data['client'] = currentUser?.displayName;
                                 data['status'] = status;
                                 //print(cleaner_data);
                                 Navigator.push(
@@ -145,26 +146,6 @@ class _ConfirmTruceState extends State<ConfirmTruce> {
                       )
                     ],
                   ),
-                  // child: ListTile(
-                  //   title: Text(cleanerData['firstName']! +
-                  //       ' ' +
-                  //       cleanerData['secondName']),
-                  //   subtitle: Text(cleanerData['email']!),
-                  //   trailing: ElevatedButton(
-                  //     onPressed: () {
-                  //       data['cleaner'] = cleanerData['firstName'];
-                  //       data['cleaner_uid'] = cleanerData['uid'];
-                  //       data['status'] = ['Pending'];
-                  //       //print(cleaner_data);
-                  //       Navigator.push(
-                  //           context,
-                  //           MaterialPageRoute(
-                  //               builder: (context) => DisplayDetails(
-                  //                   data: data, cleanerData: cleanerData)));
-                  //     },
-                  //     child: const Text("View Profile"),
-                  //   ),
-                  // ),
                 );
               }).toList(),
             );
@@ -239,58 +220,4 @@ Widget buildCard(BuildContext context) {
   );
 }
 
-// // class AddData extends StatelessWidget {
-// //   AddData({Key? key}) : super(key: key);
 
-// //   final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
-// //       .collection('users')
-// //       .where('type', isEqualTo: "cleaner")
-// //       //.doc(uid)
-// //       .snapshots();
-
-// //   // Map<String, dynamic> data = {};
-// //   // @override
-// //   // void initState() {
-// //   //   super.initState();
-// //   //   data = widget.data;
-// //   // }
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       body: StreamBuilder<QuerySnapshot>(
-// //       stream: _usersStream,
-// //       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-// //         if (snapshot.hasError) {
-// //           return const Text('Something went wrong');
-// //         }
-
-// //         if (snapshot.connectionState == ConnectionState.waiting) {
-// //           return const Text("Loading");
-// //         }
-// //         return ListView(
-// //           children: snapshot.data!.docs.map((DocumentSnapshot document) {
-// //             Map<String, dynamic> cleaner_data =
-// //                 document.data()! as Map<String, dynamic>;
-
-// //             return ListTile(
-// //               title: Text(cleaner_data['firstName']! + ' ' + cleaner_data['secondName']),
-// //               subtitle: Text(cleaner_data['email']!),
-// //               trailing: ElevatedButton(
-// //                 onPressed: () {
-// //                   print(cleaner_data);
-// //                   Navigator.push(
-// //                       context,
-// //                       MaterialPageRoute(
-// //                           builder: (context) => DisplayDetails()));
-// //                 },
-// //                 child: const Text("View Profile"),
-// //               ),
-// //             );
-// //           }).toList(),
-// //         );
-// //       },
-// //     )
-// //     );
-// //   }
-// // }

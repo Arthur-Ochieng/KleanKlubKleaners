@@ -1,16 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kkservices/screens/home_page.dart';
+import 'package:kkservices/screens/payment/payment_UI.dart';
 
-class BookingSummary extends StatefulWidget {
-  final Map<String, dynamic> data;
-  const BookingSummary({Key? key, required this.data}) : super(key: key);
+class HistorySummary extends StatefulWidget {
+  final Map<String, dynamic> orderData;
+  const HistorySummary({Key? key, required this.orderData}) : super(key: key);
+
   @override
-  _BookingSummaryState createState() => _BookingSummaryState();
+  State<HistorySummary> createState() => _HistorySummaryState();
 }
 
-class _BookingSummaryState extends State<BookingSummary> {
+class _HistorySummaryState extends State<HistorySummary> {
+  String? userID = "";
+  late String? test;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   User? get currentUser => _firebaseAuth.currentUser;
 
@@ -18,13 +22,14 @@ class _BookingSummaryState extends State<BookingSummary> {
   @override
   void initState() {
     super.initState();
-    data = widget.data;
+    data = widget.orderData;
+    userID = currentUser?.uid;
+    test = currentUser?.uid;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
       body: ListView.builder(
           //itemCount: data.length,
           itemBuilder: (_, index) {
@@ -40,16 +45,16 @@ class _BookingSummaryState extends State<BookingSummary> {
                     },
                     child: const Icon(
                       Icons.arrow_back_ios_new_outlined,
-                      color: Colors.white,
+                      color: Colors.black,
                       size: 26,
                     ),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
-                  Text("Booking Summary",
+                  Text("Booking Details",
                       style: GoogleFonts.nunitoSans(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 26,
                       ))
                 ]),
@@ -73,7 +78,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                         style: GoogleFonts.nunitoSans(fontSize: 23),
                       ),
                       const SizedBox(
-                        height: 70,
+                        height: 40,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -121,18 +126,18 @@ class _BookingSummaryState extends State<BookingSummary> {
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 10,
                       ),
                       const Divider(),
                       const SizedBox(
-                        height: 30,
+                        height: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "BOOKING DETAILS",
+                            "DETAILS",
                             style: GoogleFonts.nunitoSans(
                                 fontSize: 18, color: Colors.green),
                           ),
@@ -148,7 +153,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                             Text("DATE",
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                             const SizedBox(
-                              width: 170,
+                              width: 168,
                             ),
                             Text(data['date'].toString(),
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
@@ -165,30 +170,64 @@ class _BookingSummaryState extends State<BookingSummary> {
                             Text("TIME",
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                             const SizedBox(
-                              width: 165,
+                              width: 170,
                             ),
                             Text(data['time'].toString(),
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                           ],
                         ),
                       ),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(left: 15.0),
-                      //   child: Row(
-                      //     children: [
-                      //       Text("START DATE",
-                      //           style: GoogleFonts.nunitoSans(fontSize: 15)),
-                      //       const SizedBox(
-                      //         width: 150,
-                      //       ),
-                      //       Text(data['service']!,
-                      //           style: GoogleFonts.nunitoSans(fontSize: 15)),
-                      //     ],
-                      //   ),
-                      // ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Row(
+                          children: [
+                            Text("AMOUNT",
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                            const SizedBox(
+                              width: 145,
+                            ),
+                            Text(data['amount'].toString(),
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Row(
+                          children: [
+                            Text("FREQUENCY",
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                            const SizedBox(
+                              width: 126,
+                            ),
+                            Text(data['frequency']!,
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Row(
+                          children: [
+                            Text("INSTRUCTIONS",
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                            const SizedBox(
+                              width: 80,
+                            ),
+                            Text(data['instructions']!,
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                          ],
+                        ),
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -199,7 +238,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                             Text("STATUS",
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                             const SizedBox(
-                              width: 166,
+                              width: 150,
                             ),
                             Text(data['status']!,
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
@@ -207,20 +246,11 @@ class _BookingSummaryState extends State<BookingSummary> {
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
                       const Divider(),
                       const SizedBox(
-                        height: 30,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()));
-                        },
-                        child: const Text("Confirm"),
+                        height: 20,
                       ),
                       const SizedBox(height: 20),
                     ],

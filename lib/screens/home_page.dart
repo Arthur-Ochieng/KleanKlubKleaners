@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kkservices/screens/feedback/feedback.dart';
 import 'package:kkservices/screens/bookings/booking.dart';
-import 'package:kkservices/screens/fragments/cleaners.dart';
+import 'package:kkservices/screens/fragments/history.dart';
 import 'package:kkservices/screens/orders/orders.dart';
-import 'package:kkservices/screens/payment/payment.dart';
 import 'package:kkservices/screens/profile/new_profile.dart';
 import 'package:kkservices/screens/settings/settings.dart';
 import 'package:kkservices/widgets/drawer.dart';
@@ -22,10 +20,9 @@ class _HomePageState extends State<HomePage> {
   final List fragments =  [
     const BookingPage(),
     const OrdersPage(),
-    const FeedBackPage(),
+    const HistoryPage(),
     const SettingsPage(),
     const ProfileUIPage(),
-    Cleaners(),
   ];
 
   bool _dropdownShown = false;

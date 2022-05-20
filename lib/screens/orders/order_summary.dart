@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kkservices/screens/bookings/cleaner_details.dart';
 import 'package:kkservices/screens/payment/payment_UI.dart';
 
 class OrderSummary extends StatefulWidget {
   final Map<String, dynamic> orderData;
-  const OrderSummary({Key? key, required this.orderData}) : super(key: key);
+  const OrderSummary({Key? key, required this.orderData})
+      : super(key: key);
 
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
@@ -79,7 +79,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                         style: GoogleFonts.nunitoSans(fontSize: 23),
                       ),
                       const SizedBox(
-                        height: 70,
+                        height: 40,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -102,7 +102,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             Text("SERVICE",
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                             const SizedBox(
-                              width: 150,
+                              width: 170,
                             ),
                             Text(data['service']!,
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
@@ -119,7 +119,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             Text("CLEANER",
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                             const SizedBox(
-                              width: 150,
+                              width: 170,
                             ),
                             Text(data['cleaner'],
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
@@ -127,11 +127,11 @@ class _OrderSummaryState extends State<OrderSummary> {
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 10,
                       ),
                       const Divider(),
                       const SizedBox(
-                        height: 30,
+                        height: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -154,7 +154,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             Text("DATE",
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                             const SizedBox(
-                              width: 150,
+                              width: 168,
                             ),
                             Text(data['date'].toString(),
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
@@ -164,23 +164,6 @@ class _OrderSummaryState extends State<OrderSummary> {
                       const SizedBox(
                         height: 20,
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(left: 15.0),
-                      //   child: Row(
-                      //     children: [
-                      //       Text("PHONE ",
-                      //           style: GoogleFonts.nunitoSans(fontSize: 15)),
-                      //       const SizedBox(
-                      //         width: 150,
-                      //       ),
-                      //       Text(data['phoneNumber'].toString(),
-                      //           style: GoogleFonts.nunitoSans(fontSize: 15)),
-                      //     ],
-                      //   ),
-                      // ),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0),
                         child: Row(
@@ -188,9 +171,60 @@ class _OrderSummaryState extends State<OrderSummary> {
                             Text("TIME",
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                             const SizedBox(
-                              width: 150,
+                              width: 170,
                             ),
                             Text(data['time'].toString(),
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Row(
+                          children: [
+                            Text("AMOUNT",
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                            const SizedBox(
+                              width: 145,
+                            ),
+                            Text(data['amount'].toString(),
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Row(
+                          children: [
+                            Text("FREQUENCY",
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                            const SizedBox(
+                              width: 126,
+                            ),
+                            Text(data['frequency']!,
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Row(
+                          children: [
+                            Text("INSTRUCTIONS",
+                                style: GoogleFonts.nunitoSans(fontSize: 15)),
+                            const SizedBox(
+                              width: 80,
+                            ),
+                            Text(data['instructions']!,
                                 style: GoogleFonts.nunitoSans(fontSize: 15)),
                           ],
                         ),
@@ -213,26 +247,21 @@ class _OrderSummaryState extends State<OrderSummary> {
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
                       const Divider(),
                       const SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          FirebaseFirestore.instance
-                              .collection("booking")
-                              .add(data)
-                              .then((value) {
-                            data['documentID'] = value.id;
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PaymentModule()));
-                          });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PaymentModule(data: data)));
                         },
-                        child: const Text("Mark as Completed"),
+                        child: const Text("Proceed"),
                       ),
                       const SizedBox(height: 20),
                     ],

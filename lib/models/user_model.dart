@@ -3,9 +3,10 @@ class UserModel {
   String? email;
   String? firstName;
   String? secondName;
+  String? phoneNumber;
   String? type;
 
-  UserModel({this.uid, this.email, this.firstName, this.secondName, this.type});
+  UserModel({this.uid, this.email, this.firstName, this.secondName, this.type, this.phoneNumber});
 
   //data from the server
   factory UserModel.fromMap(map) {
@@ -15,6 +16,7 @@ class UserModel {
       firstName: map('firstName'),
       secondName: map('secondName'),
       type: map('type'),
+      phoneNumber: map('phoneNumber'),
     );
   }
 
@@ -26,6 +28,7 @@ class UserModel {
       'firstName': firstName,
       'secondName': secondName,
       'type': type,
+      'phoneNumber': phoneNumber,
     };
   }
 
@@ -34,5 +37,6 @@ class UserModel {
         email = snapshot.data()['email'],
         firstName = snapshot.data()['firstName'],
         secondName = snapshot.data()['secondName'],
-        type = snapshot.data()['type'];
+        type = snapshot.data()['type'],
+        phoneNumber = snapshot.data()['phoneNumber'];
 }

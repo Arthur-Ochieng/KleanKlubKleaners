@@ -23,6 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final firstNameEditingController = TextEditingController();
   final secondNameEditingController = TextEditingController();
   final emailEditingController = TextEditingController();
+  final phoneEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
   final confirmPasswordEditingController = TextEditingController();
 
@@ -115,6 +116,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         prefixIcon: const Icon(Icons.mail),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Email",
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+
+    //phone field
+    final phoneField = TextFormField(
+      autofocus: false,
+      controller: phoneEditingController,
+      keyboardType: TextInputType.phone,
+
+      //validator
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter Your Phone Number");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        phoneEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.phone),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Phone Number",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -219,14 +247,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           child: Container(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(36.0),
+              padding: const EdgeInsets.all(40.0),
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 180,
+                      height: 150,
                       child: Image.asset(
                         "assets/icons/KK.png",
                         fit: BoxFit.contain,
@@ -238,6 +266,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     secondNameField,
                     const SizedBox(height: 20),
                     emailField,
+                    const SizedBox(height: 20),
+                    phoneField,
                     const SizedBox(height: 20),
                     passwordField,
                     const SizedBox(height: 20),
@@ -283,16 +313,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {
-            postDetailsToFirestore(),
-            currentUser?.updateDisplayName(firstNameEditingController.text),
-          })
+                postDetailsToFirestore(),
+                currentUser?.updateDisplayName(firstNameEditingController.text),
+              })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
     }
   }
 
-  postDetailsToFirestore() async { 
+  postDetailsToFirestore() async {
     //calling our firestore
     //calling our user model
     //sending them values
@@ -306,6 +336,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.type = "client";
     userModel.email = user!.email;
     userModel.uid = user.uid;
+    userModel.phoneNumber = phoneEditingController.text;
     userModel.firstName = firstNameEditingController.text;
     userModel.secondName = secondNameEditingController.text;
 

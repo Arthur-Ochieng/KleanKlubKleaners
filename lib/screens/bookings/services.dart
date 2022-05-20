@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kkservices/screens/bookings/available_cleaners.dart';
+import 'package:kkservices/screens/bookings/date_Time.dart';
+
 
 class ServicesPage extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -20,14 +22,11 @@ class _ServicesPageState extends State<ServicesPage> {
     data = widget.data;
   }
 
-  DateTime dateTime = DateTime(2022, 12, 24, 5, 30);
-  bool isVisible = true;
+  bool isVisible = false;
   final TextEditingController _numController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final hours = dateTime.hour.toString().padLeft(2, '0');
-    final minutes = dateTime.minute.toString().padLeft(2, '0');
     return Scaffold(
       appBar: AppBar(
         title: const Text("Select Service"),
@@ -166,6 +165,9 @@ class _ServicesPageState extends State<ServicesPage> {
                     children: [
                       InkWell(
                         onTap: () {
+                          setState(() {
+                            isVisible = !isVisible;
+                          });
                           changeFrequency("laundry");
                         },
                         child: Container(
@@ -181,8 +183,6 @@ class _ServicesPageState extends State<ServicesPage> {
                                       color: Colors.black.withOpacity(0.3)),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10))),
-
-                              
                           child: Center(
                             child: Text(
                               "Laundry",
@@ -198,6 +198,9 @@ class _ServicesPageState extends State<ServicesPage> {
                       ),
                       InkWell(
                         onTap: () {
+                          setState(() {
+                            isVisible = !isVisible;
+                          });
                           changeFrequency("dusting");
                         },
                         child: Container(
@@ -228,6 +231,9 @@ class _ServicesPageState extends State<ServicesPage> {
                       ),
                       InkWell(
                         onTap: () {
+                          setState(() {
+                            isVisible = !isVisible;
+                          });
                           changeFrequency("cleaning");
                         },
                         child: Container(
@@ -262,7 +268,7 @@ class _ServicesPageState extends State<ServicesPage> {
                     height: 40,
                   ),
                   const Text(
-                    "Select Date and Time",
+                    "Enter the number of rooms or piles",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
@@ -275,16 +281,31 @@ class _ServicesPageState extends State<ServicesPage> {
                         height: 16,
                       ),
                       Expanded(
-                        child: ElevatedButton(
-                          child: Text(
-                              '${dateTime.year}/${dateTime.month}/${dateTime.day} $hours:$minutes'),
-                          onPressed: pickDateTime,
+                        child: TextFormField(
+                          //width: MediaQuery.of(context).size.width * 0.875,
+                          controller: _numController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Required";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.phone,
+                          decoration: const InputDecoration(
+                            disabledBorder: InputBorder.none,
+                            hintText: "Enter Number of Rooms",
+                            hintStyle: TextStyle(color: Colors.black54),
+                            prefixIcon: Icon(
+                              Icons.room_service,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -294,9 +315,7 @@ class _ServicesPageState extends State<ServicesPage> {
                       extraWidget("blind", "Small Blinds", false),
                     ],
                   ),
-                  Expanded(
-                    child: Container(),
-                  ),
+                  const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -329,33 +348,22 @@ class _ServicesPageState extends State<ServicesPage> {
     );
   }
 
+  void calculation() {
+    var val = int.parse(_numController.text);
+    var estimate = val * 250;
+    setState(() {
+      data['amount'] = estimate;
+    });
+  }
+
   void changeCleaningType(String type) {
     selectedType = type;
-    setState(() {});
+    setState(() {
+      data['frequency'] = type;
+    });
   }
 
   void changeFrequency(String frequency) {
-    // Visibility(
-    //   child: TextFormField(
-    //     controller: _numController,
-    //     validator: (value) {
-    //       if (value!.isEmpty) {
-    //         return "Required";
-    //       }
-    //       return null;
-    //     },
-    //     keyboardType: TextInputType.phone,
-    //     decoration: const InputDecoration(
-    //       disabledBorder: InputBorder.none,
-    //       hintText: "Enter Number of Rooms",
-    //       hintStyle: TextStyle(color: Colors.black54),
-    //       prefixIcon: Icon(
-    //         Icons.room_service,
-    //         color: Colors.black,
-    //       ),
-    //     ),
-    //   ),
-    // );
     selectedFrequency = frequency;
     setState(() {
       data['service'] = frequency;
@@ -414,44 +422,46 @@ class _ServicesPageState extends State<ServicesPage> {
   }
 
   void openCalendarPage() {
+    calculation();
     //FirebaseFirestore.instance.collection("booking").add(data);
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ConfirmTruce(data: data)));
+        MaterialPageRoute(builder: (context) => InstructionScreen(data: data)));
   }
 
-  Future pickDateTime() async {
-    DateTime? date = await pickDate();
-    if (date == null) return; // pressed "Cancel"
+  // Future pickDateTime() async {
+  //   DateTime? date = await pickDate();
+  //   if (date == null) return; // pressed "Cancel"
 
-    TimeOfDay? time = await pickTime();
-    if (time == null) return; //pressed "Cancel"
+  //   TimeOfDay? time = await pickTime();
+  //   if (time == null) return; //pressed "Cancel"
 
-    final dateTime = DateTime(
-      date.year,
-      date.month,
-      date.day,
-      time.hour,
-      time.minute,
-    );
-    setState(() {
-      this.dateTime = dateTime;
-      data['date'] = date.year.toString() +
-          '/' +
-          date.month.toString() +
-          '/' +
-          date.day.toString();
-      data['time'] = time.hour.toString() + ':' + time.minute.toString();
-    });
-  }
+  //   final dateTime = DateTime(
+  //     date.year,
+  //     date.month,
+  //     date.day,
+  //     time.hour,
+  //     time.minute,
+  //   );
+  //   setState(() {
+  //     this.dateTime = dateTime;
+  //     data['date'] = date.year.toString() +
+  //         '/' +
+  //         date.month.toString() +
+  //         '/' +
+  //         date.day.toString();
+  //     data['time'] = time.hour.toString() + ':' + time.minute.toString();
+  //   });
+  // }
 
-  Future<DateTime?> pickDate() => showDatePicker(
-        context: context,
-        initialDate: dateTime,
-        firstDate: DateTime(2022),
-        lastDate: DateTime(2100),
-      );
+  // Future<DateTime?> pickDate() => showDatePicker(
+  //       context: context,
+  //       initialDate: dateTime,
+  //       firstDate: DateTime(2022),
+  //       lastDate: DateTime(2100),
+  //     );
 
-  Future<TimeOfDay?> pickTime() => showTimePicker(
-      context: context,
-      initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute));
+  // Future<TimeOfDay?> pickTime() => showTimePicker(
+  //     context: context,
+  //     initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute));
+
 }

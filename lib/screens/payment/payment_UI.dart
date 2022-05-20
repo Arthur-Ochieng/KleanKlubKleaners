@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:kkservices/screens/payment/success.dart';
 
 class PaymentModule extends StatefulWidget {
-  const PaymentModule({Key? key}) : super(key: key);
+  final Map<String, dynamic> data;
+  const PaymentModule({Key? key, required this.data}) : super(key: key);
 
   @override
   State<PaymentModule> createState() => _PaymentModuleState();
 }
 
 class _PaymentModuleState extends State<PaymentModule> {
+
+  Map<String, dynamic> data = {};
+  @override
+  void initState() {
+    super.initState();
+    data = widget.data;
+  }
+
   int value = 0;
 
   final paymentIcons = [
@@ -32,7 +41,7 @@ class _PaymentModuleState extends State<PaymentModule> {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.only(left: 20, top: 60),
             child: Text(
               "Choose your payment method",
               style: TextStyle(color: Color(0xFF808080), fontSize: 20),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kkservices/models/auth.dart';
 import 'package:kkservices/screens/profile/e_profile.dart';
 import 'package:kkservices/widgets/numbers_widget.dart';
 
@@ -46,13 +47,13 @@ class _ProfileUIPageState extends State<ProfileUIPage> {
           Column(
             children: [
               const SizedBox(height: 8),
-              const Text(
-                "Arthur Ochieng",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              Text(
+                "${AuthService().currentUser?.displayName}",
+                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               const Text(
-                "Flutter Software Engineer",
+                "Klean Klub Client",
                 style: const TextStyle(fontSize: 20, color: Colors.black),
               ),
               const SizedBox(height: 7),
@@ -66,7 +67,7 @@ class _ProfileUIPageState extends State<ProfileUIPage> {
                     Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditProfilePage(),
+                      builder: (context) => const EditProfilePage(),
                     ));
                 },
                 child: Container(
@@ -76,68 +77,11 @@ class _ProfileUIPageState extends State<ProfileUIPage> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Expanded(
-                    child: ListTile(
-                      title: Text(
-                        "4",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xff525E7E),
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      subtitle: Text(
-                        "Jobs Posted",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xff525E7E),
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 48),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const[
-                    Text(
-                      "About",
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      "Flutter Software Engineer and Google Developer",
-                      style: TextStyle(
-                        fontSize: 18,
-                        height: 1.4,
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Text("+ 254 712 815 240"),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 20,
-                        right: 20,
-                        top: 10,
-                        bottom: 10,
-                      ),
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-
                     ListTile(
                       title: Text("History"),
                       leading: Icon(Icons.history),

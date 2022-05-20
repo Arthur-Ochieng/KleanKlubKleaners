@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kkservices/models/auth.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
@@ -86,10 +87,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 const SizedBox(
                   height: 30,
                 ),
-                buildTextField("Full Name", 'Arthur', false),
-                buildTextField("Email", 'ja@gmail.com', false),
+                buildTextField("Full Name", '${AuthService().currentUser?.displayName}', false),
+                buildTextField("Email", '@gmail.com', false),
                 buildTextField("Password", '*******', true),
-                buildTextField("Location", 'Nairobi', false),
+                buildTextField("Location", 'Langata', false),
                 const SizedBox(
                   height: 30,
                 ),
@@ -97,7 +98,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         child: const Text(
                           "Cancel",
                           style: TextStyle(

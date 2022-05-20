@@ -37,7 +37,7 @@ class CategoryCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '$_courseAmount Courses',
+                    '$_courseAmount Services',
                     style: TextStyle(
                       fontSize: 16,
                       color: Color(0xff8F95B2),
